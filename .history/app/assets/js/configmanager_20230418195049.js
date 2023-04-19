@@ -7,7 +7,7 @@ const logger = LoggerUtil.getLogger('ConfigManager')
 
 const sysRoot = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
-const dataPath = path.join(sysRoot, '.bdstwgamedata')
+const dataPath = path.join(sysRoot, '.helioslauncher')
 
 const launcherDir = require('@electron/remote').app.getPath('userData')
 
@@ -65,7 +65,7 @@ function resolveSelectedRAM(ram) {
     } else {
         // Legacy behavior
         const mem = os.totalmem()
-        return mem >= (8*1073741824) ? '6G' : (mem >= (6*1073741824) ? '3G' : '2G')
+        return mem >= (8*1073741824) ? '4G' : (mem >= (6*1073741824) ? '3G' : '2G')
     }
 }
 
@@ -81,7 +81,7 @@ const DEFAULT_CONFIG = {
             resWidth: 1280,
             resHeight: 720,
             fullscreen: false,
-            autoConnect: false,
+            autoConnect: true,
             launchDetached: true
         },
         launcher: {
@@ -140,8 +140,8 @@ exports.load = function(){
             doValidate = true
         } catch (err){
             logger.error(err)
-            logger.info('配置文件包含格式錯誤的JSON或已損壞')
-            logger.info('產生新的配置文件')
+            logger.info('Configuration file contains malformed JSON or is corrupt.')
+            logger.info('Generating a new configuration file.')
             fs.ensureDirSync(path.join(configPath, '..'))
             config = DEFAULT_CONFIG
             exports.save()
@@ -151,7 +151,7 @@ exports.load = function(){
             exports.save()
         }
     }
-    logger.info('成功載入')
+    logger.info('Successfully Loaded')
 }
 
 /**
@@ -521,7 +521,6 @@ function defaultJavaConfig8(ram) {
         maxRAM: resolveSelectedRAM(ram),
         executable: null,
         jvmOptions: [
-            '-javaagent:JarClient.jar',
             '-XX:+UseConcMarkSweepGC',
             '-XX:+CMSIncrementalMode',
             '-XX:-UseAdaptiveSizePolicy',
@@ -536,7 +535,6 @@ function defaultJavaConfig17(ram) {
         maxRAM: resolveSelectedRAM(ram),
         executable: null,
         jvmOptions: [
-            '-javaagent:JarClient.jar',
             '-XX:+UnlockExperimentalVMOptions',
             '-XX:+UseG1GC',
             '-XX:G1NewSizePercent=20',
