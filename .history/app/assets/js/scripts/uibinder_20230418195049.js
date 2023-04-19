@@ -61,7 +61,7 @@ function getCurrentView(){
 async function showMainUI(data){
 
     if(!isDev){
-        loggerAutoUpdater.info('正在初始化..')
+        loggerAutoUpdater.info('Initializing..')
         ipcRenderer.send('autoUpdateAction', 'initAutoUpdater', ConfigManager.getAllowPrerelease())
     }
 
@@ -115,9 +115,9 @@ function showFatalStartupError(){
         $('#loadingContainer').fadeOut(250, () => {
             document.getElementById('overlayContainer').style.background = 'none'
             setOverlayContent(
-                '致命錯誤: 無法載入伺服器索引',
-                '無法連接到我們的伺服器下載伺服器索引 沒有本地副本可供加載 <br><br>伺服器索引是一個重要的文件，提供最新的伺服器訊息 如果缺少此文件，登入器將無法使用 請確保您已連接到網際網路並重新啟動登入器',
-                '關閉'
+                'Fatal Error: Unable to Load Distribution Index',
+                'A connection could not be established to our servers to download the distribution index. No local copies were available to load. <br><br>The distribution index is an essential file which provides the latest server information. The launcher is unable to start without it. Ensure you are connected to the internet and relaunch the application.',
+                'Close'
             )
             setOverlayHandler(() => {
                 const window = remote.getCurrentWindow()
@@ -333,10 +333,10 @@ async function validateSelectedAccount(){
             ConfigManager.save()
             const accLen = Object.keys(ConfigManager.getAuthAccounts()).length
             setOverlayContent(
-                '無法更新登入',
-                `我們無法更新 <strong>${selectedAcc.displayName}</strong>的登入資訊  請 ${accLen > 0 ? '選擇另一個帳戶或 ' : ''} 重新登入此帳號`,
-                '登入',
-                '選擇另一個帳號'
+                'Failed to Refresh Login',
+                `We were unable to refresh the login for <strong>${selectedAcc.displayName}</strong>. Please ${accLen > 0 ? 'select another account or ' : ''} login again.`,
+                'Login',
+                'Select Another Account'
             )
             setOverlayHandler(() => {
 
