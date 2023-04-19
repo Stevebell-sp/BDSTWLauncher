@@ -901,8 +901,8 @@ function bindDropinModsRemoveButton(){
                 document.getElementById(fullName).remove()
             } else {
                 setOverlayContent(
-                    `刪除失敗<br>附加模組 ${fullName}`,
-                    '請確認檔案未被使用 然後再試一次.',
+                    `Failed to Delete<br>Drop-in Mod ${fullName}`,
+                    'Make sure the file is not in use and try again.',
                     'Okay'
                 )
                 setOverlayHandler(null)
@@ -956,7 +956,7 @@ function saveDropinModConfiguration(){
                 DropinModUtil.toggleDropinMod(CACHE_SETTINGS_MODS_DIR, dropin.fullName, dropinUIEnabled).catch(err => {
                     if(!isOverlayVisible()){
                         setOverlayContent(
-                            '無法切換<br>一個或多個附加模組',
+                            'Failed to Toggle<br>One or More Drop-in Mods',
                             err.message,
                             'Okay'
                         )
@@ -1344,19 +1344,19 @@ async function populateJavaExecDetails(execPath){
     const details = await validateSelectedJvm(ensureJavaDirIsRoot(execPath), server.effectiveJavaOptions.supported)
 
     if(details != null) {
-        settingsJavaExecDetails.innerHTML = `已選擇: Java ${details.semverStr} (${details.vendor})`
+        settingsJavaExecDetails.innerHTML = `Selected: Java ${details.semverStr} (${details.vendor})`
     } else {
-        settingsJavaExecDetails.innerHTML = '無效的選擇'
+        settingsJavaExecDetails.innerHTML = 'Invalid Selection'
     }
 }
 
 function populateJavaReqDesc(server) {
-    settingsJavaReqDesc.innerHTML = `需求必須的 Java ${server.effectiveJavaOptions.suggestedMajor} x64.`
+    settingsJavaReqDesc.innerHTML = `Requires Java ${server.effectiveJavaOptions.suggestedMajor} x64.`
 }
 
 function populateJvmOptsLink(server) {
     const major = server.effectiveJavaOptions.suggestedMajor
-    settingsJvmOptsLink.innerHTML = `Java ${major} (HotSpot VM) 的可用選項`
+    settingsJvmOptsLink.innerHTML = `Available Options for Java ${major} (HotSpot VM)`
     if(major >= 12) {
         settingsJvmOptsLink.href = `https://docs.oracle.com/en/java/javase/${major}/docs/specs/man/java.html#extra-options-for-java`
     }
@@ -1456,7 +1456,7 @@ function populateAboutVersionInformation(){
  */
 function populateReleaseNotes(){
     $.ajax({
-        url: 'https://github.com/Stevebell-sp/BDSTWLauncher/releases.atom',
+        url: 'https://github.com/dscalzi/HeliosLauncher/releases.atom',
         success: (data) => {
             const version = 'v' + remote.app.getVersion()
             const entries = $(data).find('entry')
@@ -1476,7 +1476,7 @@ function populateReleaseNotes(){
         },
         timeout: 2500
     }).catch(err => {
-        settingsAboutChangelogText.innerHTML = '無法載入發佈說明'
+        settingsAboutChangelogText.innerHTML = 'Failed to load release notes.'
     })
 }
 
@@ -1524,27 +1524,27 @@ function settingsUpdateButtonStatus(text, disabled = false, handler = null){
  */
 function populateSettingsUpdateInformation(data){
     if(data != null){
-        settingsUpdateTitle.innerHTML = `新的 ${isPrerelease(data.version) ? '預發行版' : '正式版'} 可用`
+        settingsUpdateTitle.innerHTML = `New ${isPrerelease(data.version) ? 'Pre-release' : 'Release'} Available`
         settingsUpdateChangelogCont.style.display = null
         settingsUpdateChangelogTitle.innerHTML = data.releaseName
         settingsUpdateChangelogText.innerHTML = data.releaseNotes
         populateVersionInformation(data.version, settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
         
         if(process.platform === 'darwin'){
-            settingsUpdateButtonStatus('從 GitHub 下載<span style="font-size: 10px;color: gray;text-shadow: none !important;">關閉登入器並執行 dmg 以進行更新</span>', false, () => {
+            settingsUpdateButtonStatus('Download from GitHub<span style="font-size: 10px;color: gray;text-shadow: none !important;">Close the launcher and run the dmg to update.</span>', false, () => {
                 shell.openExternal(data.darwindownload)
             })
         } else {
-            settingsUpdateButtonStatus('下載中..', true)
+            settingsUpdateButtonStatus('Downloading..', true)
         }
     } else {
-        settingsUpdateTitle.innerHTML = '您正在執行最新版本'
+        settingsUpdateTitle.innerHTML = 'You Are Running the Latest Version'
         settingsUpdateChangelogCont.style.display = 'none'
         populateVersionInformation(remote.app.getVersion(), settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
-        settingsUpdateButtonStatus('檢查更新', false, () => {
+        settingsUpdateButtonStatus('Check for Updates', false, () => {
             if(!isDev){
                 ipcRenderer.send('autoUpdateAction', 'checkForUpdate')
-                settingsUpdateButtonStatus('正在檢查更新中..', true)
+                settingsUpdateButtonStatus('Checking for Updates..', true)
             }
         })
     }

@@ -1531,20 +1531,20 @@ function populateSettingsUpdateInformation(data){
         populateVersionInformation(data.version, settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
         
         if(process.platform === 'darwin'){
-            settingsUpdateButtonStatus('從 GitHub 下載<span style="font-size: 10px;color: gray;text-shadow: none !important;">關閉登入器並執行 dmg 以進行更新</span>', false, () => {
+            settingsUpdateButtonStatus('Download from GitHub<span style="font-size: 10px;color: gray;text-shadow: none !important;">Close the launcher and run the dmg to update.</span>', false, () => {
                 shell.openExternal(data.darwindownload)
             })
         } else {
-            settingsUpdateButtonStatus('下載中..', true)
+            settingsUpdateButtonStatus('Downloading..', true)
         }
     } else {
-        settingsUpdateTitle.innerHTML = '您正在執行最新版本'
+        settingsUpdateTitle.innerHTML = 'You Are Running the Latest Version'
         settingsUpdateChangelogCont.style.display = 'none'
         populateVersionInformation(remote.app.getVersion(), settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
-        settingsUpdateButtonStatus('檢查更新', false, () => {
+        settingsUpdateButtonStatus('Check for Updates', false, () => {
             if(!isDev){
                 ipcRenderer.send('autoUpdateAction', 'checkForUpdate')
-                settingsUpdateButtonStatus('正在檢查更新中..', true)
+                settingsUpdateButtonStatus('Checking for Updates..', true)
             }
         })
     }
