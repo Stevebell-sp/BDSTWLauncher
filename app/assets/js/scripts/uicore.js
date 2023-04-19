@@ -41,11 +41,11 @@ if(!isDev){
     ipcRenderer.on('autoUpdateNotification', (event, arg, info) => {
         switch(arg){
             case 'checking-for-update':
-                loggerAutoUpdater.info('Checking for update..')
-                settingsUpdateButtonStatus('Checking for Updates..', true)
+                loggerAutoUpdater.info('正在檢查更新..')
+                settingsUpdateButtonStatus('正在檢查更新中..', true)
                 break
             case 'update-available':
-                loggerAutoUpdater.info('New update available', info.version)
+                loggerAutoUpdater.info('有新的更新可用', info.version)
                 
                 if(process.platform === 'darwin'){
                     info.darwindownload = `https://github.com/Stevebell-sp/BDSTWLauncher/releases/download/v${info.version}/BDSTW-Launcher-setup-${info.version}${process.arch === 'arm64' ? '-arm64' : '-x64'}.dmg`
@@ -55,8 +55,8 @@ if(!isDev){
                 populateSettingsUpdateInformation(info)
                 break
             case 'update-downloaded':
-                loggerAutoUpdater.info('Update ' + info.version + ' ready to be installed.')
-                settingsUpdateButtonStatus('Install Now', false, () => {
+                loggerAutoUpdater.info('Update ' + info.version + ' 已準備好開始安裝更新')
+                settingsUpdateButtonStatus('馬上安裝', false, () => {
                     if(!isDev){
                         ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
                     }
@@ -64,8 +64,8 @@ if(!isDev){
                 showUpdateUI(info)
                 break
             case 'update-not-available':
-                loggerAutoUpdater.info('No new update found.')
-                settingsUpdateButtonStatus('Check for Updates')
+                loggerAutoUpdater.info('沒有更新可用')
+                settingsUpdateButtonStatus('檢查更新')
                 break
             case 'ready':
                 updateCheckListener = setInterval(() => {
@@ -78,15 +78,15 @@ if(!isDev){
                     if(info.code === 'ERR_UPDATER_INVALID_RELEASE_FEED'){
                         loggerAutoUpdater.info('No suitable releases found.')
                     } else if(info.code === 'ERR_XML_MISSED_ELEMENT'){
-                        loggerAutoUpdater.info('No releases found.')
+                        loggerAutoUpdater.info('找不到任何發布.')
                     } else {
-                        loggerAutoUpdater.error('Error during update check..', info)
+                        loggerAutoUpdater.error('更新檢查時發生錯誤..', info)
                         loggerAutoUpdater.debug('Error Code:', info.code)
                     }
                 }
                 break
             default:
-                loggerAutoUpdater.info('Unknown argument', arg)
+                loggerAutoUpdater.info('未知的參數', arg)
                 break
         }
     })
@@ -134,7 +134,7 @@ $(function(){
 
 document.addEventListener('readystatechange', function () {
     if (document.readyState === 'interactive'){
-        loggerUICore.info('UICore Initializing..')
+        loggerUICore.info('UICore 初始化中..')
 
         // Bind close button.
         Array.from(document.getElementsByClassName('fCb')).map((val) => {
