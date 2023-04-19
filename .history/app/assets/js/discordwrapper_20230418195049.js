@@ -13,7 +13,7 @@ exports.initRPC = function(genSettings, servSettings, initialDetails = 'Waiting 
 
     activity = {
         details: initialDetails,
-        state: '伺服器: ' + servSettings.shortId,
+        state: 'Server: ' + servSettings.shortId,
         largeImageKey: servSettings.largeImageKey,
         largeImageText: servSettings.largeImageText,
         smallImageKey: genSettings.smallImageKey,
@@ -23,15 +23,15 @@ exports.initRPC = function(genSettings, servSettings, initialDetails = 'Waiting 
     }
 
     client.on('ready', () => {
-        logger.info('Discord RPC 以連接')
+        logger.info('Discord RPC Connected')
         client.setActivity(activity)
     })
     
     client.login({clientId: genSettings.clientId}).catch(error => {
         if(error.message.includes('ENOENT')) {
-            logger.info('無法初始化Discord Rich Presence 未檢測到客戶端')
+            logger.info('Unable to initialize Discord Rich Presence, no client detected.')
         } else {
-            logger.info('無法初始化Discord目前狀態: ' + error.message, error)
+            logger.info('Unable to initialize Discord Rich Presence: ' + error.message, error)
         }
     })
 }
