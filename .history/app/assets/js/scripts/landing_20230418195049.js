@@ -102,7 +102,7 @@ function setLaunchEnabled(val){
 
 // Bind launch button
 document.getElementById('launch_button').addEventListener('click', async e => {
-    loggerLanding.info('遊戲啟動中..')
+    loggerLanding.info('Launching game..')
     try {
         const server = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
         const jExe = ConfigManager.getJavaExecutable(ConfigManager.getSelectedServer())
@@ -124,8 +124,8 @@ document.getElementById('launch_button').addEventListener('click', async e => {
             }
         }
     } catch(err) {
-        loggerLanding.error('在啟動過程中發生無法處理的錯誤', err)
-        showLaunchFailure('啟動期間發生錯誤', '請查看控制台 (CTRL + Shift + i) 以獲取更多詳細信息 看不懂得話請洽登入器作者')
+        loggerLanding.error('Unhandled error in during launch process.', err)
+        showLaunchFailure('Error During Launch', 'See console (CTRL + Shift + i) for more details.')
     }
 })
 
@@ -145,7 +145,7 @@ document.getElementById('avatarOverlay').onclick = async e => {
 
 // Bind selected account
 function updateSelectedAccount(authUser){
-    let username = '沒有選擇帳號'
+    let username = 'No Account Selected'
     if(authUser != null){
         if(authUser.displayName != null){
             username = authUser.displayName
@@ -172,7 +172,7 @@ function updateSelectedServer(serv){
     setLaunchEnabled(serv != null)
 }
 // Real text is set in uibinder.js on distributionIndexDone.
-server_selection_button.innerHTML = '\u2022 載入中..'
+server_selection_button.innerHTML = '\u2022 Loading..'
 server_selection_button.onclick = async e => {
     e.target.blur()
     await toggleServerSelection(true)
@@ -180,7 +180,7 @@ server_selection_button.onclick = async e => {
 
 // Update Mojang Status Color
 const refreshMojangStatuses = async function(){
-    loggerLanding.info('更新 Mojang 狀態..')
+    loggerLanding.info('Refreshing Mojang Statuses..')
 
     let status = 'grey'
     let tooltipEssentialHTML = ''
@@ -191,7 +191,7 @@ const refreshMojangStatuses = async function(){
     if(response.responseStatus === RestResponseStatus.SUCCESS) {
         statuses = response.data
     } else {
-        loggerLanding.warn('無法更新 Mojang 服務狀態')
+        loggerLanding.warn('Unable to refresh Mojang service status.')
         statuses = MojangRestAPI.getDefaultStatuses()
     }
     
@@ -240,21 +240,21 @@ const refreshMojangStatuses = async function(){
 }
 
 const refreshServerStatus = async (fade = false) => {
-    loggerLanding.info('更新伺服器狀態')
+    loggerLanding.info('Refreshing Server Status')
     const serv = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
 
-    let pLabel = '伺服器'
-    let pVal = '離線中'
+    let pLabel = 'SERVER'
+    let pVal = 'OFFLINE'
 
     try {
 
         const servStat = await getServerStatus(47, serv.hostname, serv.port)
         console.log(servStat)
-        pLabel = '玩家'
+        pLabel = 'PLAYERS'
         pVal = servStat.players.online + '/' + servStat.players.max
 
     } catch (err) {
-        loggerLanding.warn('無法更新伺服器狀態, 伺服器離線中')
+        loggerLanding.warn('Unable to refresh server status, assuming offline.')
         loggerLanding.debug(err)
     }
     if(fade){
@@ -304,7 +304,7 @@ function showLaunchFailure(title, desc){
  */
 async function asyncSystemScan(effectiveJavaOptions, launchAfter = true){
 
-    setLaunchDetails('檢查系統資訊..')
+    setLaunchDetails('Checking system info..')
     toggleLaunchArea(true)
     setLaunchPercentage(0, 100)
 
@@ -317,30 +317,30 @@ async function asyncSystemScan(effectiveJavaOptions, launchAfter = true){
         // If the result is null, no valid Java installation was found.
         // Show this information to the user.
         setOverlayContent(
-            '找不到<br>相容的 Java 安裝',
-            `為了加入憶蝶夢海伺服器遊玩，您需要安裝64位元的Java ${effectiveJavaOptions.suggestedMajor}。您想要我們幫忙安裝嗎？`,
-            '安裝 Java',
-            '我自行手動安裝'
+            'No Compatible<br>Java Installation Found',
+            `In order to join WesterosCraft, you need a 64-bit installation of Java ${effectiveJavaOptions.suggestedMajor}. Would you like us to install a copy?`,
+            'Install Java',
+            'Install Manually'
         )
         setOverlayHandler(() => {
-            setLaunchDetails('準備下載 Java..')
+            setLaunchDetails('Preparing Java Download..')
             toggleOverlay(false)
             
             try {
                 downloadJava(effectiveJavaOptions, launchAfter)
             } catch(err) {
-                loggerLanding.error('Java 下載時出現無法處理的錯誤', err)
-                showLaunchFailure('Java 下載期間發生錯誤', '請查看控制台 (CTRL + Shift + i) 以獲取更多詳細信息 看不懂得話請洽登入器作者')
+                loggerLanding.error('Unhandled error in Java Download', err)
+                showLaunchFailure('Error During Java Download', 'See console (CTRL + Shift + i) for more details.')
             }
         })
         setDismissHandler(() => {
             $('#overlayContent').fadeOut(250, () => {
                 //$('#overlayDismiss').toggle(false)
                 setOverlayContent(
-                    '需要 Java<br>才能啟動',
-                    `需要安裝有效的 x64 Java ${effectiveJavaOptions.suggestedMajor} 版本才能啟動`,
-                    '我了解',
-                    '返回'
+                    'Java is Required<br>to Launch',
+                    `A valid x64 installation of Java ${effectiveJavaOptions.suggestedMajor} is required to launch.<br><br>Please refer to our <a href="https://github.com/dscalzi/HeliosLauncher/wiki/Java-Management#manually-installing-a-valid-version-of-java">Java Management Guide</a> for instructions on how to manually install Java.`,
+                    'I Understand',
+                    'Go Back'
                 )
                 setOverlayHandler(() => {
                     toggleLaunchArea(false)
@@ -385,7 +385,7 @@ async function downloadJava(effectiveJavaOptions, launchAfter = true) {
         effectiveJavaOptions.distribution)
 
     if(asset == null) {
-        throw new Error('找不到 OpenJDK 發行版')
+        throw new Error('Failed to find OpenJDK distribution.')
     }
 
     let received = 0
@@ -396,11 +396,11 @@ async function downloadJava(effectiveJavaOptions, launchAfter = true) {
     setDownloadPercentage(100)
 
     if(received != asset.size) {
-        loggerLanding.warn(`Java 下載：預期 ${asset.size} 位元組，但實際接收到 ${received}`)
+        loggerLanding.warn(`Java Download: Expected ${asset.size} bytes but received ${received}`)
         if(!await validateLocalFile(asset.path, asset.algo, asset.hash)) {
-            log.error(`Hashes不符合，${asset.id} 可能已損壞`)
+            log.error(`Hashes do not match, ${asset.id} may be corrupted.`)
             // Don't know how this could happen, but report it.
-            throw new Error('下載的JDK檔案Hash錯誤，可能已損壞')
+            throw new Error('Downloaded JDK has bad hash, file may be corrupted.')
         }
     }
 
@@ -409,7 +409,7 @@ async function downloadJava(effectiveJavaOptions, launchAfter = true) {
     remote.getCurrentWindow().setProgressBar(2)
 
     // Wait for extration to complete.
-    const eLStr = '提取 Java 中'
+    const eLStr = 'Extracting Java'
     let dotStr = ''
     setLaunchDetails(eLStr)
     const extractListener = setInterval(() => {
@@ -431,7 +431,7 @@ async function downloadJava(effectiveJavaOptions, launchAfter = true) {
     ConfigManager.save()
 
     clearInterval(extractListener)
-    setLaunchDetails('已安裝 Java!')
+    setLaunchDetails('Java Installed!')
 
     // TODO Callback hell
     // Refactor the launch functions
@@ -456,7 +456,7 @@ async function dlAsync(login = true) {
 
     const loggerLaunchSuite = LoggerUtil.getLogger('LaunchSuite')
 
-    setLaunchDetails('正在載入伺服器資訊..')
+    setLaunchDetails('Loading server information..')
 
     let distro
 
@@ -464,8 +464,8 @@ async function dlAsync(login = true) {
         distro = await DistroAPI.refreshDistributionOrFallback()
         onDistroRefresh(distro)
     } catch(err) {
-        loggerLaunchSuite.error('無法載入伺服器索引', err)
-        showLaunchFailure('致命錯誤', '無法載入伺服器索引的內容 請查看控制台 (CTRL + Shift + i) 以獲取更多詳細信息 看不懂得話請洽登入器作者')
+        loggerLaunchSuite.error('Unable to refresh distribution index.', err)
+        showLaunchFailure('Fatal Error', 'Could not load a copy of the distribution index. See the console (CTRL + Shift + i) for more details.')
         return
     }
 
@@ -473,12 +473,12 @@ async function dlAsync(login = true) {
 
     if(login) {
         if(ConfigManager.getSelectedAccount() == null){
-            loggerLanding.error('您必須登入帳號')
+            loggerLanding.error('You must be logged into an account.')
             return
         }
     }
 
-    setLaunchDetails('請稍後..')
+    setLaunchDetails('Please wait..')
     toggleLaunchArea(true)
     setLaunchPercentage(0, 100)
 
@@ -493,18 +493,18 @@ async function dlAsync(login = true) {
     fullRepairModule.spawnReceiver()
 
     fullRepairModule.childProcess.on('error', (err) => {
-        loggerLaunchSuite.error('啟動時發生錯誤', err)
-        showLaunchFailure('啟動時發生錯誤', err.message || '請查看控制台 (CTRL + Shift + i) 以獲取更多詳細信息 看不懂得話請洽登入器作者')
+        loggerLaunchSuite.error('Error during launch', err)
+        showLaunchFailure('Error During Launch', err.message || 'See console (CTRL + Shift + i) for more details.')
     })
     fullRepairModule.childProcess.on('close', (code, _signal) => {
         if(code !== 0){
-            loggerLaunchSuite.error(`Full Repair Module 以代碼 ${code} 結束, 發生錯誤`)
-            showLaunchFailure('啟動時發生錯誤', '請查看控制台 (CTRL + Shift + i) 以獲取更多詳細信息 看不懂得話請洽登入器作者')
+            loggerLaunchSuite.error(`Full Repair Module exited with code ${code}, assuming error.`)
+            showLaunchFailure('Error During Launch', 'See console (CTRL + Shift + i) for more details.')
         }
     })
 
-    loggerLaunchSuite.info('驗證檔案')
-    setLaunchDetails('驗證檔案完整性..')
+    loggerLaunchSuite.info('Validating files.')
+    setLaunchDetails('Validating file integrity..')
     let invalidFileCount = 0
     try {
         invalidFileCount = await fullRepairModule.verifyFiles(percent => {
@@ -512,15 +512,15 @@ async function dlAsync(login = true) {
         })
         setLaunchPercentage(100)
     } catch (err) {
-        loggerLaunchSuite.error('文件驗證時發生錯誤.')
-        showLaunchFailure('檔案驗證時發生錯誤', err.displayable || '請查看控制台 (CTRL + Shift + i) 以獲取更多詳細信息 看不懂得話請洽登入器作者')
+        loggerLaunchSuite.error('Error during file validation.')
+        showLaunchFailure('Error During File Verification', err.displayable || 'See console (CTRL + Shift + i) for more details.')
         return
     }
     
 
     if(invalidFileCount > 0) {
-        loggerLaunchSuite.info('下載檔案')
-        setLaunchDetails('下載檔案中..')
+        loggerLaunchSuite.info('Downloading files.')
+        setLaunchDetails('Downloading files..')
         setLaunchPercentage(0)
         try {
             await fullRepairModule.download(percent => {
@@ -528,12 +528,12 @@ async function dlAsync(login = true) {
             })
             setDownloadPercentage(100)
         } catch(err) {
-            loggerLaunchSuite.error('檔案下載時發生錯誤')
-            showLaunchFailure('檔案下載時發生錯誤', err.displayable || '請查看控制台 (CTRL + Shift + i) 以獲取更多詳細信息 看不懂得話請洽登入器作者')
+            loggerLaunchSuite.error('Error during file download.')
+            showLaunchFailure('Error During File Download', err.displayable || 'See console (CTRL + Shift + i) for more details.')
             return
         }
     } else {
-        loggerLaunchSuite.info('沒有無效或錯誤的檔案 跳過下載')
+        loggerLaunchSuite.info('No invalid files, skipping download.')
     }
 
     // Remove download bar.
@@ -541,7 +541,7 @@ async function dlAsync(login = true) {
 
     fullRepairModule.destroyReceiver()
 
-    setLaunchDetails('準備啟動..')
+    setLaunchDetails('Preparing to launch..')
 
     const mojangIndexProcessor = new MojangIndexProcessor(
         ConfigManager.getCommonDirectory(),
@@ -557,17 +557,17 @@ async function dlAsync(login = true) {
 
     if(login) {
         const authUser = ConfigManager.getSelectedAccount()
-        loggerLaunchSuite.info(`將選定的帳戶 (${authUser.displayName}) 傳送至 ProcessBuilder`)
+        loggerLaunchSuite.info(`Sending selected account (${authUser.displayName}) to ProcessBuilder.`)
         let pb = new ProcessBuilder(serv, versionData, forgeData, authUser, remote.app.getVersion())
         setLaunchDetails('Launching game..')
 
         // const SERVER_JOINED_REGEX = /\[.+\]: \[CHAT\] [a-zA-Z0-9_]{1,16} joined the game/
-        const SERVER_JOINED_REGEX = new RegExp(`\\[.+\\]: \\[CHAT\\] ${authUser.displayName} 加入了遊戲`)
+        const SERVER_JOINED_REGEX = new RegExp(`\\[.+\\]: \\[CHAT\\] ${authUser.displayName} joined the game`)
 
         const onLoadComplete = () => {
             toggleLaunchArea(false)
             if(hasRPC){
-                DiscordWrapper.updateDetails('載入遊戲中..')
+                DiscordWrapper.updateDetails('Loading game..')
                 proc.stdout.on('data', gameStateChange)
             }
             proc.stdout.removeListener('data', tempListener)
@@ -594,17 +594,17 @@ async function dlAsync(login = true) {
         const gameStateChange = function(data){
             data = data.trim()
             if(SERVER_JOINED_REGEX.test(data)){
-                DiscordWrapper.updateDetails('探索領域!')
+                DiscordWrapper.updateDetails('Exploring the Realm!')
             } else if(GAME_JOINED_REGEX.test(data)){
-                DiscordWrapper.updateDetails('遊玩專屬伺服器!')
+                DiscordWrapper.updateDetails('Sailing to Westeros!')
             }
         }
 
         const gameErrorListener = function(data){
             data = data.trim()
             if(data.indexOf('Could not find or load main class net.minecraft.launchwrapper.Launch') > -1){
-                loggerLaunchSuite.error('遊戲啟動失敗，LaunchWrapper 下載不完整.')
-                showLaunchFailure('啟動時發生錯誤', '主要文件LaunchWrapper未能正確下載 因此，遊戲無法啟動 <br><br>為解決此問題，請暫時關閉您的防病毒軟體或是防火牆並重新啟動遊戲。<br><br>如果您有時間，請<a href="https://bdstw.org/support/tickets">提交問題</a>並讓我們知道您使用的防病毒軟體或是防火牆。我們將會嘗試幫您解決問題')
+                loggerLaunchSuite.error('Game launch failed, LaunchWrapper was not downloaded properly.')
+                showLaunchFailure('Error During Launch', 'The main file, LaunchWrapper, failed to download properly. As a result, the game cannot launch.<br><br>To fix this issue, temporarily turn off your antivirus software and launch the game again.<br><br>If you have time, please <a href="https://github.com/dscalzi/HeliosLauncher/issues">submit an issue</a> and let us know what antivirus software you use. We\'ll contact them and try to straighten things out.')
             }
         }
 
@@ -616,14 +616,14 @@ async function dlAsync(login = true) {
             proc.stdout.on('data', tempListener)
             proc.stderr.on('data', gameErrorListener)
 
-            setLaunchDetails('完成. 好好享受伺服器吧!')
+            setLaunchDetails('Done. Enjoy the server!')
 
             // Init Discord Hook
             if(distro.rawDistribution.discord != null && serv.rawServerdiscord != null){
                 DiscordWrapper.initRPC(distro.rawDistribution.discord, serv.rawServer.discord)
                 hasRPC = true
                 proc.on('close', (code, signal) => {
-                    loggerLaunchSuite.info('關閉 Discord Rich Presence..')
+                    loggerLaunchSuite.info('Shutting down Discord Rich Presence..')
                     DiscordWrapper.shutdownRPC()
                     hasRPC = false
                     proc = null
@@ -632,8 +632,8 @@ async function dlAsync(login = true) {
 
         } catch(err) {
 
-            loggerLaunchSuite.error('啟動時發生錯誤', err)
-            showLaunchFailure('啟動時發生錯誤', '請查看控制台 (CTRL + Shift + i) 以獲取更多詳細信息 看不懂得話請洽登入器作者')
+            loggerLaunchSuite.error('Error during launch', err)
+            showLaunchFailure('Error During Launch', 'Please check the console (CTRL + Shift + i) for more details.')
 
         }
     }
@@ -740,7 +740,7 @@ let newsLoadingListener = null
  */
 function setNewsLoading(val){
     if(val){
-        const nLStr = '檢查公告'
+        const nLStr = 'Checking for News'
         let dotStr = '..'
         nELoadSpan.innerHTML = nLStr + dotStr
         newsLoadingListener = setInterval(() => {

@@ -632,8 +632,8 @@ async function dlAsync(login = true) {
 
         } catch(err) {
 
-            loggerLaunchSuite.error('啟動時發生錯誤', err)
-            showLaunchFailure('啟動時發生錯誤', '請查看控制台 (CTRL + Shift + i) 以獲取更多詳細信息 看不懂得話請洽登入器作者')
+            loggerLaunchSuite.error('Error during launch', err)
+            showLaunchFailure('Error During Launch', 'Please check the console (CTRL + Shift + i) for more details.')
 
         }
     }
@@ -740,7 +740,7 @@ let newsLoadingListener = null
  */
 function setNewsLoading(val){
     if(val){
-        const nLStr = '檢查公告'
+        const nLStr = 'Checking for News'
         let dotStr = '..'
         nELoadSpan.innerHTML = nLStr + dotStr
         newsLoadingListener = setInterval(() => {
