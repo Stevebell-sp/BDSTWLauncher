@@ -602,7 +602,7 @@ async function dlAsync(login = true) {
 
         const gameErrorListener = function(data){
             data = data.trim()
-            if(data.indexOf('無法找到或是載入主要文件 net.minecraft.launchwrapper.Launch') > -1){
+            if(data.indexOf('Could not find or load main class net.minecraft.launchwrapper.Launch') > -1){
                 loggerLaunchSuite.error('遊戲啟動失敗，LaunchWrapper 下載不完整.')
                 showLaunchFailure('啟動時發生錯誤', '主要文件LaunchWrapper未能正確下載 因此，遊戲無法啟動 <br><br>為解決此問題，請暫時關閉您的防病毒軟體或是防火牆並重新啟動遊戲。<br><br>如果您有時間，請<a href="https://bdstw.org/support/tickets">提交問題</a>並讓我們知道您使用的防病毒軟體或是防火牆。我們將會嘗試幫您解決問題')
             }
