@@ -318,7 +318,7 @@ async function asyncSystemScan(effectiveJavaOptions, launchAfter = true){
         // Show this information to the user.
         setOverlayContent(
             '找不到<br>相容的 Java 安裝',
-            `為了遊玩憶蝶夢海伺服器，您需要安裝64位元的Java ${effectiveJavaOptions.suggestedMajor}。您想要我們幫忙安裝嗎？`,
+            `為了加入憶蝶夢海伺服器遊玩，您需要安裝64位元的Java ${effectiveJavaOptions.suggestedMajor}。您想要我們幫忙安裝嗎？`,
             '安裝 Java',
             '我自行手動安裝'
         )
