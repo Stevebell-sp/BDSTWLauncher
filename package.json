@@ -1,13 +1,13 @@
 {
   "name": "bdstwlauncher",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "productName": "BDSTW Launcher",
   "description": "模組專用 創世神登入器",
   "author": "Steve (https://github.com/Stevebell-sp)",
   "license": "UNLICENSED",
   "homepage": "https://github.com/Stevebell-sp/BDSTWLauncher",
   "bugs": {
-    "url": "https://github.com/Stevebell-sp/BDSTWLauncher/issues"
+    "url": "https://bdstw.org/support/tickets"
   },
   "private": true,
   "main": "index.js",
