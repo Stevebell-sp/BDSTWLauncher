@@ -616,7 +616,7 @@ async function dlAsync(login = true) {
             proc.stdout.on('data', tempListener)
             proc.stderr.on('data', gameErrorListener)
 
-            setLaunchDetails('完成 好好享受伺服器吧!')
+            setLaunchDetails('完成. 好好享受伺服器吧!<br>請不要再重複按PLAY了')
 
             // Init Discord Hook
             if(distro.rawDistribution.discord != null && serv.rawServerdiscord != null){
