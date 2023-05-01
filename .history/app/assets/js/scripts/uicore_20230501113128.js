@@ -26,9 +26,9 @@ window.eval = global.eval = function () {
 
 // Display warning when devtools window is opened.
 remote.getCurrentWebContents().on('devtools-opened', () => {
-    console.log('%c此客戶端後台是作者排除BUG時會使用的工具', 'color: white; -webkit-text-stroke: 4px #a02d2a; font-size: 60px; font-weight: bold')
-    console.log('%c如果\'有人告訴你要在這裡貼上什麼東西\'那麼你正在受到詐騙', 'font-size: 16px')
-    console.log('%c除非您確切知道自己在做什麼\'否則請關閉此視窗', 'font-size: 16px')
+    console.log('%cThe console is dark and full of terrors.', 'color: white; -webkit-text-stroke: 4px #a02d2a; font-size: 60px; font-weight: bold')
+    console.log('%cIf you\'ve been told to paste something here, you\'re being scammed.', 'font-size: 16px')
+    console.log('%cUnless you know exactly what you\'re doing, close this window.', 'font-size: 16px')
 })
 
 // Disable zoom, needed for darwin.
@@ -76,12 +76,12 @@ if(!isDev){
             case 'realerror':
                 if(info != null && info.code != null){
                     if(info.code === 'ERR_UPDATER_INVALID_RELEASE_FEED'){
-                        loggerAutoUpdater.info('找不到合適的版本')
+                        loggerAutoUpdater.info('No suitable releases found.')
                     } else if(info.code === 'ERR_XML_MISSED_ELEMENT'){
                         loggerAutoUpdater.info('找不到任何發布.')
                     } else {
                         loggerAutoUpdater.error('更新檢查時發生錯誤..', info)
-                        loggerAutoUpdater.debug('錯誤代碼:', info.code)
+                        loggerAutoUpdater.debug('Error Code:', info.code)
                     }
                 }
                 break

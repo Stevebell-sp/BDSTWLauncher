@@ -76,12 +76,12 @@ if(!isDev){
             case 'realerror':
                 if(info != null && info.code != null){
                     if(info.code === 'ERR_UPDATER_INVALID_RELEASE_FEED'){
-                        loggerAutoUpdater.info('找不到合適的版本')
+                        loggerAutoUpdater.info('No suitable releases found.')
                     } else if(info.code === 'ERR_XML_MISSED_ELEMENT'){
                         loggerAutoUpdater.info('找不到任何發布.')
                     } else {
                         loggerAutoUpdater.error('更新檢查時發生錯誤..', info)
-                        loggerAutoUpdater.debug('錯誤代碼:', info.code)
+                        loggerAutoUpdater.debug('Error Code:', info.code)
                     }
                 }
                 break
