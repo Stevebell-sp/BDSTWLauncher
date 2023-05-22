@@ -1,12 +1,12 @@
 {
   "name": "bdstwlauncher",
-  "version": "2.5.1",
+  "version": "2.5.4",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "bdstwlauncher",
-      "version": "2.5.1",
+      "version": "2.5.2",
       "license": "UNLICENSED",
       "dependencies": {
         "@electron/remote": "^2.0.8",
