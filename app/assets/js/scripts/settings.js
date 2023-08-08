@@ -611,7 +611,7 @@ function refreshAuthAccountSelected(uuid){
         const selBtn = val.getElementsByClassName('settingsAuthAccountSelect')[0]
         if(uuid === val.getAttribute('uuid')){
             selBtn.setAttribute('已選擇', '')
-            selBtn.innerHTML = '已選擇的帳號 &#10004;'
+            selBtn.innerHTML = '選擇的帳號 &#10004;'
         } else {
             if(selBtn.hasAttribute('selected')){
                 selBtn.removeAttribute('selected')
