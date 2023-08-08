@@ -339,8 +339,8 @@ settingsNavDone.onclick = () => {
  * Account Management Tab
  */
 
-const msftLoginLogger = LoggerUtil.getLogger('Microsoft Login')
-const msftLogoutLogger = LoggerUtil.getLogger('Microsoft Logout')
+const msftLoginLogger = LoggerUtil.getLogger('Microsoft 登入')
+const msftLogoutLogger = LoggerUtil.getLogger('Microsoft 登出')
 
 // Bind the add mojang account button.
 document.getElementById('settingsAddMojangAccount').onclick = (e) => {
@@ -368,14 +368,14 @@ ipcRenderer.on(MSFT_OPCODE.REPLY_LOGIN, (_, ...arguments_) => {
 
             if(arguments_[1] === MSFT_ERROR.NOT_FINISHED) {
                 // User cancelled.
-                msftLoginLogger.info('Login cancelled by user.')
+                msftLoginLogger.info('使用者取消登入')
                 return
             }
 
             // Unexpected error.
             setOverlayContent(
-                'Something Went Wrong',
-                'Microsoft authentication failed. Please try again.',
+                '好像有些不對勁',
+                '微軟認證失敗 請在試一次',
                 'OK'
             )
             setOverlayHandler(() => {
@@ -394,7 +394,7 @@ ipcRenderer.on(MSFT_OPCODE.REPLY_LOGIN, (_, ...arguments_) => {
                 // This is probably if you messed up the app registration with Azure.      
                 let error = queryMap.error // Error might be 'access_denied' ?
                 let errorDesc = queryMap.error_description
-                console.log('Error getting authCode, is Azure application registered correctly?')
+                console.log('獲取 authCode 時出錯, Azure 應用程式是否已正確註冊?')
                 console.log(error)
                 console.log(errorDesc)
                 console.log('Full query map: ', queryMap)
@@ -411,7 +411,7 @@ ipcRenderer.on(MSFT_OPCODE.REPLY_LOGIN, (_, ...arguments_) => {
             })
         } else {
 
-            msftLoginLogger.info('Acquired authCode, proceeding with authentication.')
+            msftLoginLogger.info('已獲取授權碼, 正在進行身份驗證')
 
             const authCode = queryMap.code
             AuthManager.addMicrosoftAccount(authCode).then(value => {
@@ -424,14 +424,14 @@ ipcRenderer.on(MSFT_OPCODE.REPLY_LOGIN, (_, ...arguments_) => {
 
                     let actualDisplayableError
                     if(isDisplayableError(displayableError)) {
-                        msftLoginLogger.error('Error while logging in.', displayableError)
+                        msftLoginLogger.error('登入時出現錯誤', displayableError)
                         actualDisplayableError = displayableError
                     } else {
                         // Uh oh.
-                        msftLoginLogger.error('Unhandled error during login.', displayableError)
+                        msftLoginLogger.error('登入時出現了無法處理的錯誤', displayableError)
                         actualDisplayableError = {
-                            title: 'Unknown Error During Login',
-                            desc: 'An unknown error has occurred. Please see the console for details.'
+                            title: '登入時出現未知錯誤',
+                            desc: '發生未知錯誤 請查看控制台以獲取詳細訊息 或者 聯繫登入器作者'
                         }
                     }
 
@@ -461,11 +461,11 @@ function bindAuthAccountSelect(){
             for(let i=0; i<selectBtns.length; i++){
                 if(selectBtns[i].hasAttribute('selected')){
                     selectBtns[i].removeAttribute('selected')
-                    selectBtns[i].innerHTML = 'Select Account'
+                    selectBtns[i].innerHTML = '選擇帳號'
                 }
             }
             val.setAttribute('selected', '')
-            val.innerHTML = 'Selected Account &#10004;'
+            val.innerHTML = '已選擇帳號 &#10004;'
             setSelectedAccount(val.closest('.settingsAuthAccount').getAttribute('uuid'))
         }
     })
@@ -483,10 +483,10 @@ function bindAuthAccountLogOut(){
             if(Object.keys(ConfigManager.getAuthAccounts()).length === 1){
                 isLastAccount = true
                 setOverlayContent(
-                    'Warning<br>This is Your Last Account',
-                    'In order to use the launcher you must be logged into at least one account. You will need to login again after.<br><br>Are you sure you want to log out?',
-                    'I\'m Sure',
-                    'Cancel'
+                    '警告<br>這是您的最後一個帳號',
+                    '為了使用登入器，您必須至少登入一個帳號 <br>如果您登出了之後您需要重新登入 <br>我們不提供離線遊玩 <br><br>您確定要登出嗎?',
+                    '我確定',
+                    '取消'
                 )
                 setOverlayHandler(() => {
                     processLogOut(val, isLastAccount)
@@ -549,14 +549,14 @@ ipcRenderer.on(MSFT_OPCODE.REPLY_LOGOUT, (_, ...arguments_) => {
 
             if(arguments_.length > 1 && arguments_[1] === MSFT_ERROR.NOT_FINISHED) {
                 // User cancelled.
-                msftLogoutLogger.info('Logout cancelled by user.')
+                msftLogoutLogger.info('使用者取消登入')
                 return
             }
 
             // Unexpected error.
             setOverlayContent(
-                'Something Went Wrong',
-                'Microsoft logout failed. Please try again.',
+                '好像有些不對勁',
+                'Microsoft 登出失敗 請在試一次',
                 'OK'
             )
             setOverlayHandler(() => {
@@ -570,7 +570,7 @@ ipcRenderer.on(MSFT_OPCODE.REPLY_LOGOUT, (_, ...arguments_) => {
         const isLastAccount = arguments_[2]
         const prevSelAcc = ConfigManager.getSelectedAccount()
 
-        msftLogoutLogger.info('Logout Successful. uuid:', uuid)
+        msftLogoutLogger.info('登出成功 uuid:', uuid)
         
         AuthManager.removeMicrosoftAccount(uuid)
             .then(() => {
@@ -610,13 +610,13 @@ function refreshAuthAccountSelected(uuid){
     Array.from(document.getElementsByClassName('settingsAuthAccount')).map((val) => {
         const selBtn = val.getElementsByClassName('settingsAuthAccountSelect')[0]
         if(uuid === val.getAttribute('uuid')){
-            selBtn.setAttribute('selected', '')
-            selBtn.innerHTML = 'Selected Account &#10004;'
+            selBtn.setAttribute('已選擇', '')
+            selBtn.innerHTML = '選擇的帳號 &#10004;'
         } else {
             if(selBtn.hasAttribute('selected')){
                 selBtn.removeAttribute('selected')
             }
-            selBtn.innerHTML = 'Select Account'
+            selBtn.innerHTML = '選擇帳號'
         }
     })
 }
@@ -648,7 +648,7 @@ function populateAuthAccounts(){
             <div class="settingsAuthAccountRight">
                 <div class="settingsAuthAccountDetails">
                     <div class="settingsAuthAccountDetailPane">
-                        <div class="settingsAuthAccountDetailTitle">Username</div>
+                        <div class="settingsAuthAccountDetailTitle">玩家角色名稱</div>
                         <div class="settingsAuthAccountDetailValue">${acc.displayName}</div>
                     </div>
                     <div class="settingsAuthAccountDetailPane">
@@ -657,9 +657,9 @@ function populateAuthAccounts(){
                     </div>
                 </div>
                 <div class="settingsAuthAccountActions">
-                    <button class="settingsAuthAccountSelect" ${selectedUUID === acc.uuid ? 'selected>Selected Account &#10004;' : '>Select Account'}</button>
+                    <button class="settingsAuthAccountSelect" ${selectedUUID === acc.uuid ? 'selected>已選擇的帳號 &#10004;' : '>已選擇的帳號'}</button>
                     <div class="settingsAuthAccountWrapper">
-                        <button class="settingsAuthAccountLogOut">Log Out</button>
+                        <button class="settingsAuthAccountLogOut">登出</button>
                     </div>
                 </div>
             </div>
@@ -901,8 +901,8 @@ function bindDropinModsRemoveButton(){
                 document.getElementById(fullName).remove()
             } else {
                 setOverlayContent(
-                    `Failed to Delete<br>Drop-in Mod ${fullName}`,
-                    'Make sure the file is not in use and try again.',
+                    `刪除失敗<br>附加模組 ${fullName}`,
+                    '請確認檔案未被使用 然後再試一次.',
                     'Okay'
                 )
                 setOverlayHandler(null)
@@ -956,7 +956,7 @@ function saveDropinModConfiguration(){
                 DropinModUtil.toggleDropinMod(CACHE_SETTINGS_MODS_DIR, dropin.fullName, dropinUIEnabled).catch(err => {
                     if(!isOverlayVisible()){
                         setOverlayContent(
-                            'Failed to Toggle<br>One or More Drop-in Mods',
+                            '無法切換<br>一個或多個附加模組',
                             err.message,
                             'Okay'
                         )
@@ -1344,19 +1344,19 @@ async function populateJavaExecDetails(execPath){
     const details = await validateSelectedJvm(ensureJavaDirIsRoot(execPath), server.effectiveJavaOptions.supported)
 
     if(details != null) {
-        settingsJavaExecDetails.innerHTML = `Selected: Java ${details.semverStr} (${details.vendor})`
+        settingsJavaExecDetails.innerHTML = `已選擇: Java ${details.semverStr} (${details.vendor})`
     } else {
-        settingsJavaExecDetails.innerHTML = 'Invalid Selection'
+        settingsJavaExecDetails.innerHTML = '無效的選擇'
     }
 }
 
 function populateJavaReqDesc(server) {
-    settingsJavaReqDesc.innerHTML = `Requires Java ${server.effectiveJavaOptions.suggestedMajor} x64.`
+    settingsJavaReqDesc.innerHTML = `需求必須的 Java ${server.effectiveJavaOptions.suggestedMajor} x64.`
 }
 
 function populateJvmOptsLink(server) {
     const major = server.effectiveJavaOptions.suggestedMajor
-    settingsJvmOptsLink.innerHTML = `Available Options for Java ${major} (HotSpot VM)`
+    settingsJvmOptsLink.innerHTML = `Java ${major} (HotSpot VM) 的可用選項`
     if(major >= 12) {
         settingsJvmOptsLink.href = `https://docs.oracle.com/en/java/javase/${major}/docs/specs/man/java.html#extra-options-for-java`
     }
@@ -1456,7 +1456,7 @@ function populateAboutVersionInformation(){
  */
 function populateReleaseNotes(){
     $.ajax({
-        url: 'https://github.com/dscalzi/HeliosLauncher/releases.atom',
+        url: 'https://github.com/Stevebell-sp/BDSTWLauncher/releases.atom',
         success: (data) => {
             const version = 'v' + remote.app.getVersion()
             const entries = $(data).find('entry')
@@ -1476,7 +1476,7 @@ function populateReleaseNotes(){
         },
         timeout: 2500
     }).catch(err => {
-        settingsAboutChangelogText.innerHTML = 'Failed to load release notes.'
+        settingsAboutChangelogText.innerHTML = '無法載入發佈說明'
     })
 }
 
@@ -1524,27 +1524,27 @@ function settingsUpdateButtonStatus(text, disabled = false, handler = null){
  */
 function populateSettingsUpdateInformation(data){
     if(data != null){
-        settingsUpdateTitle.innerHTML = `New ${isPrerelease(data.version) ? 'Pre-release' : 'Release'} Available`
+        settingsUpdateTitle.innerHTML = `新的 ${isPrerelease(data.version) ? '預發行版' : '正式版'} 可用`
         settingsUpdateChangelogCont.style.display = null
         settingsUpdateChangelogTitle.innerHTML = data.releaseName
         settingsUpdateChangelogText.innerHTML = data.releaseNotes
         populateVersionInformation(data.version, settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
         
         if(process.platform === 'darwin'){
-            settingsUpdateButtonStatus('Download from GitHub<span style="font-size: 10px;color: gray;text-shadow: none !important;">Close the launcher and run the dmg to update.</span>', false, () => {
+            settingsUpdateButtonStatus('從 GitHub 下載<span style="font-size: 10px;color: gray;text-shadow: none !important;">關閉登入器並執行 dmg 以進行更新</span>', false, () => {
                 shell.openExternal(data.darwindownload)
             })
         } else {
-            settingsUpdateButtonStatus('Downloading..', true)
+            settingsUpdateButtonStatus('下載中..', true)
         }
     } else {
-        settingsUpdateTitle.innerHTML = 'You Are Running the Latest Version'
+        settingsUpdateTitle.innerHTML = '您正在執行最新版本'
         settingsUpdateChangelogCont.style.display = 'none'
         populateVersionInformation(remote.app.getVersion(), settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
-        settingsUpdateButtonStatus('Check for Updates', false, () => {
+        settingsUpdateButtonStatus('檢查更新', false, () => {
             if(!isDev){
                 ipcRenderer.send('autoUpdateAction', 'checkForUpdate')
-                settingsUpdateButtonStatus('Checking for Updates..', true)
+                settingsUpdateButtonStatus('正在檢查更新中..', true)
             }
         })
     }

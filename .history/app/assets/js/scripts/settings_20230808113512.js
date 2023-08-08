@@ -394,7 +394,7 @@ ipcRenderer.on(MSFT_OPCODE.REPLY_LOGIN, (_, ...arguments_) => {
                 // This is probably if you messed up the app registration with Azure.      
                 let error = queryMap.error // Error might be 'access_denied' ?
                 let errorDesc = queryMap.error_description
-                console.log('Error getting authCode, is Azure application registered correctly?')
+                console.log('獲取 authCode 時出錯, Azure 應用程式是否已正確註冊?')
                 console.log(error)
                 console.log(errorDesc)
                 console.log('Full query map: ', queryMap)
@@ -411,7 +411,7 @@ ipcRenderer.on(MSFT_OPCODE.REPLY_LOGIN, (_, ...arguments_) => {
             })
         } else {
 
-            msftLoginLogger.info('Acquired authCode, proceeding with authentication.')
+            msftLoginLogger.info('已獲取授權碼, 正在進行身份驗證')
 
             const authCode = queryMap.code
             AuthManager.addMicrosoftAccount(authCode).then(value => {
@@ -611,12 +611,12 @@ function refreshAuthAccountSelected(uuid){
         const selBtn = val.getElementsByClassName('settingsAuthAccountSelect')[0]
         if(uuid === val.getAttribute('uuid')){
             selBtn.setAttribute('已選擇', '')
-            selBtn.innerHTML = '已選擇的帳號 &#10004;'
+            selBtn.innerHTML = '選擇的帳號 &#10004;'
         } else {
             if(selBtn.hasAttribute('selected')){
                 selBtn.removeAttribute('selected')
             }
-            selBtn.innerHTML = '選擇帳號'
+            selBtn.innerHTML = '選擇角色'
         }
     })
 }
@@ -657,7 +657,7 @@ function populateAuthAccounts(){
                     </div>
                 </div>
                 <div class="settingsAuthAccountActions">
-                    <button class="settingsAuthAccountSelect" ${selectedUUID === acc.uuid ? 'selected>Selected Account &#10004;' : '>Select Account'}</button>
+                    <button class="settingsAuthAccountSelect" ${selectedUUID === acc.uuid ? 'selected>已選擇的角色 &#10004;' : '>已選擇的角色'}</button>
                     <div class="settingsAuthAccountWrapper">
                         <button class="settingsAuthAccountLogOut">登出</button>
                     </div>
@@ -1531,20 +1531,20 @@ function populateSettingsUpdateInformation(data){
         populateVersionInformation(data.version, settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
         
         if(process.platform === 'darwin'){
-            settingsUpdateButtonStatus('Download from GitHub<span style="font-size: 10px;color: gray;text-shadow: none !important;">Close the launcher and run the dmg to update.</span>', false, () => {
+            settingsUpdateButtonStatus('從 GitHub 下載<span style="font-size: 10px;color: gray;text-shadow: none !important;">關閉登入器並執行 dmg 以進行更新</span>', false, () => {
                 shell.openExternal(data.darwindownload)
             })
         } else {
-            settingsUpdateButtonStatus('Downloading..', true)
+            settingsUpdateButtonStatus('下載中..', true)
         }
     } else {
-        settingsUpdateTitle.innerHTML = 'You Are Running the Latest Version'
+        settingsUpdateTitle.innerHTML = '您正在執行最新版本'
         settingsUpdateChangelogCont.style.display = 'none'
         populateVersionInformation(remote.app.getVersion(), settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
-        settingsUpdateButtonStatus('Check for Updates', false, () => {
+        settingsUpdateButtonStatus('檢查更新', false, () => {
             if(!isDev){
                 ipcRenderer.send('autoUpdateAction', 'checkForUpdate')
-                settingsUpdateButtonStatus('Checking for Updates..', true)
+                settingsUpdateButtonStatus('正在檢查更新中..', true)
             }
         })
     }
