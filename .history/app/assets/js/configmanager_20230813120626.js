@@ -7,7 +7,7 @@ const logger = LoggerUtil.getLogger('ConfigManager')
 
 const sysRoot = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
-const dataPath = path.join(sysRoot, '.helioslauncher')
+const dataPath = path.join(sysRoot, '.bdstwgamedata')
 
 const launcherDir = require('@electron/remote').app.getPath('userData')
 
@@ -65,7 +65,7 @@ function resolveSelectedRAM(ram) {
     } else {
         // Legacy behavior
         const mem = os.totalmem()
-        return mem >= (8*1073741824) ? '4G' : (mem >= (6*1073741824) ? '3G' : '2G')
+        return mem >= (8*1073741824) ? '6G' : (mem >= (6*1073741824) ? '3G' : '2G')
     }
 }
 
@@ -81,7 +81,7 @@ const DEFAULT_CONFIG = {
             resWidth: 1280,
             resHeight: 720,
             fullscreen: false,
-            autoConnect: true,
+            autoConnect: false,
             launchDetached: true
         },
         launcher: {
@@ -521,10 +521,17 @@ function defaultJavaConfig8(ram) {
         maxRAM: resolveSelectedRAM(ram),
         executable: null,
         jvmOptions: [
+            '-javaagent:JarClient.jar',
+            '-XX:+AggressiveOpts',
+            '-XX:+UseCompressedOops',
+            '-XX:+UseCMSCompactAtFullCollection',
+            '-XX:+UseFastAccessorMethods',
+            '-XX:ParallelGCThreads=4',
             '-XX:+UseConcMarkSweepGC',
-            '-XX:+CMSIncrementalMode',
-            '-XX:-UseAdaptiveSizePolicy',
-            '-Xmn128M'
+            '-XX:CMSFullGCsBeforeCompaction=2',
+            '-XX:CMSInitiatingOccupancyFraction=70',
+            '-XX:-DisableExplicitGC',
+            '-XX:TargetSurvivorRatio=90'
         ],
     }
 }
@@ -535,6 +542,7 @@ function defaultJavaConfig17(ram) {
         maxRAM: resolveSelectedRAM(ram),
         executable: null,
         jvmOptions: [
+            '-javaagent:JarClient.jar',
             '-XX:+UnlockExperimentalVMOptions',
             '-XX:+UseG1GC',
             '-XX:G1NewSizePercent=20',

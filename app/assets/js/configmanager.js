@@ -522,10 +522,16 @@ function defaultJavaConfig8(ram) {
         executable: null,
         jvmOptions: [
             '-javaagent:JarClient.jar',
+            '-XX:+AggressiveOpts',
+            '-XX:+UseCompressedOops',
+            '-XX:+UseCMSCompactAtFullCollection',
+            '-XX:+UseFastAccessorMethods',
+            '-XX:ParallelGCThreads=4',
             '-XX:+UseConcMarkSweepGC',
-            '-XX:+CMSIncrementalMode',
-            '-XX:-UseAdaptiveSizePolicy',
-            '-Xmn128M'
+            '-XX:CMSFullGCsBeforeCompaction=2',
+            '-XX:CMSInitiatingOccupancyFraction=70',
+            '-XX:-DisableExplicitGC',
+            '-XX:TargetSurvivorRatio=90'
         ],
     }
 }
