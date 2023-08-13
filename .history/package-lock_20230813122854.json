@@ -6,7 +6,7 @@
   "packages": {
     "": {
       "name": "bdstwlauncher",
-      "version": "2.5.9",
+      "version": "2.5.8",
       "license": "UNLICENSED",
       "dependencies": {
         "@electron/remote": "^2.0.8",
