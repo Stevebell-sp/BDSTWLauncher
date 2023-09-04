@@ -215,14 +215,14 @@ loginButton.addEventListener('click', () => {
 
         let actualDisplayableError
         if(isDisplayableError(displayableError)) {
-            msftLoginLogger.error('登入時出錯', displayableError)
+            msftLoginLogger.error('Error while logging in.', displayableError)
             actualDisplayableError = displayableError
         } else {
             // Uh oh.
-            msftLoginLogger.error('登入時發生無法處理的錯誤', displayableError)
+            msftLoginLogger.error('Unhandled error during login.', displayableError)
             actualDisplayableError = {
-                title: '登入時發生無法處理的錯誤',
-                desc: '發生未知錯誤 請查看控制台以獲取詳細訊息 或者 請洽登入器作者'
+                title: 'Unknown Error During Login',
+                desc: 'An unknown error has occurred. Please see the console for details.'
             }
         }
 

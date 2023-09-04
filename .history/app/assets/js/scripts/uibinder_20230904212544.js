@@ -333,10 +333,10 @@ async function validateSelectedAccount(){
             ConfigManager.save()
             const accLen = Object.keys(ConfigManager.getAuthAccounts()).length
             setOverlayContent(
-                '無法更新登入',
-                `我們無法更新 <strong>${selectedAcc.displayName}</strong>. 的登入資訊  請 ${accLen > 0 ? '選擇另一個帳戶或 ' : ''} 重新登入此帳號`,
-                '登入',
-                '選擇另一個帳號'
+                'Failed to Refresh Login',
+                `We were unable to refresh the login for <strong>${selectedAcc.displayName}</strong>. Please ${accLen > 0 ? 'select another account or ' : ''} login again.`,
+                'Login',
+                'Select Another Account'
             )
             setOverlayHandler(() => {
 

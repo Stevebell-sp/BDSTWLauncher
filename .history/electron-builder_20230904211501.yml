@@ -1,6 +1,7 @@
 appId: 'bdstwlauncher'
-productName: 'BDSTW-Launcher'
-artifactName: '${productName}-setup-${version}.${ext}'
+productName: 'BDSTW Launcher'
+productName2: 'BDSTW-Launcher'
+artifactName: '${productName2}-setup-${version}.${ext}'
 
 copyright: 'Copyright © 2018-2023 憶蝶夢海社群 DC stevebell_0416'
 

@@ -7,7 +7,7 @@ const logger = LoggerUtil.getLogger('ConfigManager')
 
 const sysRoot = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
-const dataPath = path.join(sysRoot, '.bdstwgamedata')
+const dataPath = path.join(sysRoot, '.helioslauncher')
 
 const launcherDir = require('@electron/remote').app.getPath('userData')
 
@@ -521,17 +521,10 @@ function defaultJavaConfig8(ram) {
         maxRAM: resolveSelectedRAM(ram),
         executable: null,
         jvmOptions: [
-            '-javaagent:JarClient.jar',
-            '-XX:+AggressiveOpts',
-            '-XX:+UseCompressedOops',
-            '-XX:+UseCMSCompactAtFullCollection',
-            '-XX:+UseFastAccessorMethods',
-            '-XX:ParallelGCThreads=4',
             '-XX:+UseConcMarkSweepGC',
-            '-XX:CMSFullGCsBeforeCompaction=2',
-            '-XX:CMSInitiatingOccupancyFraction=70',
-            '-XX:-DisableExplicitGC',
-            '-XX:TargetSurvivorRatio=90'
+            '-XX:+CMSIncrementalMode',
+            '-XX:-UseAdaptiveSizePolicy',
+            '-Xmn128M'
         ],
     }
 }
@@ -542,7 +535,6 @@ function defaultJavaConfig17(ram) {
         maxRAM: resolveSelectedRAM(ram),
         executable: null,
         jvmOptions: [
-            '-javaagent:JarClient.jar',
             '-XX:+UnlockExperimentalVMOptions',
             '-XX:+UseG1GC',
             '-XX:G1NewSizePercent=20',

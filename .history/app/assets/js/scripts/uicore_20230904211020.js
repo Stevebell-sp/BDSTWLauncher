@@ -41,11 +41,11 @@ if(!isDev){
     ipcRenderer.on('autoUpdateNotification', (event, arg, info) => {
         switch(arg){
             case 'checking-for-update':
-                loggerAutoUpdater.info('正在檢查更新..')
-                settingsUpdateButtonStatus('正在檢查更新中..', true)
+                loggerAutoUpdater.info('Checking for update..')
+                settingsUpdateButtonStatus('Checking for Updates..', true)
                 break
             case 'update-available':
-                loggerAutoUpdater.info('有新的更新可用', info.version)
+                loggerAutoUpdater.info('New update available', info.version)
                 
                 if(process.platform === 'darwin'){
                     info.darwindownload = `https://github.com/Stevebell-sp/BDSTWLauncher/releases/download/v${info.version}/BDSTW-Launcher-setup--${info.version}${process.arch === 'arm64' ? '-arm64' : '-x64'}.dmg`
@@ -55,8 +55,8 @@ if(!isDev){
                 populateSettingsUpdateInformation(info)
                 break
             case 'update-downloaded':
-                loggerAutoUpdater.info('Update ' + info.version + ' 已準備好開始安裝更新')
-                settingsUpdateButtonStatus('馬上更新', false, () => {
+                loggerAutoUpdater.info('Update ' + info.version + ' ready to be installed.')
+                settingsUpdateButtonStatus('Install Now', false, () => {
                     if(!isDev){
                         ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
                     }
@@ -64,8 +64,8 @@ if(!isDev){
                 showUpdateUI(info)
                 break
             case 'update-not-available':
-                loggerAutoUpdater.info('沒有更新可用')
-                settingsUpdateButtonStatus('檢查更新')
+                loggerAutoUpdater.info('No new update found.')
+                settingsUpdateButtonStatus('Check for Updates')
                 break
             case 'ready':
                 updateCheckListener = setInterval(() => {
@@ -76,12 +76,12 @@ if(!isDev){
             case 'realerror':
                 if(info != null && info.code != null){
                     if(info.code === 'ERR_UPDATER_INVALID_RELEASE_FEED'){
-                        loggerAutoUpdater.info('找不到合適的版本')
+                        loggerAutoUpdater.info('No suitable releases found.')
                     } else if(info.code === 'ERR_XML_MISSED_ELEMENT'){
-                        loggerAutoUpdater.info('找不到任何發佈')
+                        loggerAutoUpdater.info('No releases found.')
                     } else {
-                        loggerAutoUpdater.error('更新檢查時發生錯誤..', info)
-                        loggerAutoUpdater.debug('錯誤代碼:', info.code)
+                        loggerAutoUpdater.error('Error during update check..', info)
+                        loggerAutoUpdater.debug('Error Code:', info.code)
                     }
                 }
                 break
