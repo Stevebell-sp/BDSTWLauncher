@@ -156,7 +156,7 @@ exports.scanForShaderpacks = function(instanceDir){
     const shaderDir = path.join(instanceDir, SHADER_DIR)
     const packsDiscovered = [{
         fullName: 'OFF',
-        name: '關閉 (預設)'
+        name: 'Off (Default)'
     }]
     if(fs.existsSync(shaderDir)){
         let modCandidates = fs.readdirSync(shaderDir)
@@ -191,7 +191,7 @@ exports.getEnabledShaderpack = function(instanceDir){
         if(match != null){
             return match[1]
         } else {
-            console.warn('警告: 光影包正則表達式失敗')
+            console.warn('WARNING: Shaderpack regex failed.')
         }
     }
     return 'OFF'
