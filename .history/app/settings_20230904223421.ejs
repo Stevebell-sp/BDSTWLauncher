@@ -7,10 +7,10 @@
             <div id="settingsNavItemsContainer">
                 <div id="settingsNavItemsContent">
                     <button class="settingsNavItem" rSc="settingsTabAccount" id="settingsNavAccount" selected>帳號</button>
-                    <button class="settingsNavItem" rSc="settingsTabJava">Java與記憶體</button>
-                    <button class="settingsNavItem" rSc="settingsTabMinecraft">Games遊戲</button><!--Minecraft 遊戲-->
-                    <button class="settingsNavItem" rSc="settingsTabMods">模組與光影</button><!--Mods-->
-                    <button class="settingsNavItem" rSc="settingsTabLauncher"></button><!--Launcher 登入器設定(模組目錄)-->
+                    <button class="settingsNavItem" rSc="settingsTabJava">Java</button>
+                    <button class="settingsNavItem" rSc="settingsTabMinecraft">遊戲</button><!--Minecraft 遊戲-->
+                    <button class="settingsNavItem" rSc="settingsTabMods">模組</button><!--Mods-->
+                    <button class="settingsNavItem" rSc="settingsTabLauncher">登入器設定</button><!--Launcher 登入器設定(模組目錄)-->
                     <div class="settingsNavSpacer"></div>
                     <button class="settingsNavItem" rSc="settingsTabAbout">關於</button>
                     <button class="settingsNavItem" rSc="settingsTabUpdate" id="settingsNavUpdate">更新</button>
@@ -84,7 +84,7 @@
             </div>
             <div class="settingsFieldContainer">
                 <div class="settingsFieldLeft">
-                    <span class="settingsFieldTitle">以全螢幕遊玩遊戲</span>
+                    <span class="settingsFieldTitle">Launch in fullscreen.</span>
                 </div>
                 <div class="settingsFieldRight">
                     <label class="toggleSwitch">
@@ -93,7 +93,7 @@
                     </label>
                 </div>
             </div>
-            <!--<div class="settingsFieldContainer">
+            <div class="settingsFieldContainer">
                 <div class="settingsFieldLeft">
                     <span class="settingsFieldTitle">Automatically connect to the server on launch.</span>
                 </div>
@@ -103,11 +103,11 @@
                         <span class="toggleSwitchSlider"></span>
                     </label>
                 </div>
-            </div>-->
+            </div>
             <div class="settingsFieldContainer">
                 <div class="settingsFieldLeft">
-                    <span class="settingsFieldTitle">遊戲與啟動器分離</span>
-                    <span class="settingsFieldDesc">如果遊戲沒有分離，會關閉啟動器也會關閉遊戲</span>
+                    <span class="settingsFieldTitle">Launch game process detached from launcher.</span>
+                    <span class="settingsFieldDesc">If the game is not detached, closing the launcher will also close the game.</span>
                 </div>
                 <div class="settingsFieldRight">
                     <label class="toggleSwitch">
@@ -119,8 +119,8 @@
         </div>
         <div id="settingsTabMods" class="settingsTab" style="display: none;">
             <div class="settingsTabHeader">
-                <span class="settingsTabHeaderText">模組&光影設定</span><!-- Mod Settings -->
-                <span class="settingsTabHeaderDesc">開啟或關閉模組</span>
+                <span class="settingsTabHeaderText">Mod Settings</span>
+                <span class="settingsTabHeaderDesc">Enable or disable mods.</span>
             </div>
             <div class="settingsSelServContainer">
                 <div class="settingsSelServContent">
@@ -128,37 +128,37 @@
                 </div>
                 <div class="settingsSwitchServerContainer">
                     <div class="settingsSwitchServerContent">
-                        <button class="settingsSwitchServerButton">切換</button>
+                        <button class="settingsSwitchServerButton">Switch</button>
                     </div>
                 </div>
             </div>
             <div id="settingsModsContainer">
                 <div id="settingsReqModsContainer">
-                    <div class="settingsModsHeader">必要的模組</div>
+                    <div class="settingsModsHeader">Required Mods</div>
                     <div id="settingsReqModsContent">
 
                     </div>
                 </div>
                 <div id="settingsOptModsContainer">
-                    <div class="settingsModsHeader">可選的模組</div>
+                    <div class="settingsModsHeader">Optional Mods</div>
                     <div id="settingsOptModsContent">
                         
                     </div>
                 </div>
-                <div id="settingsDropinModsContainer" hidden>
-                    <div class="settingsModsHeader" hidden>拖拉的模組</div>
-                    <button id="settingsDropinFileSystemButton" hidden>+ Add Mods <span id="settingsDropinRefreshNote">(F5 to Refresh)</span></button>
-                    <div id="settingsDropinModsContent" hidden>
+                <div id="settingsDropinModsContainer">
+                    <div class="settingsModsHeader">Drop-in Mods</div>
+                    <button id="settingsDropinFileSystemButton">+ Add Mods <span id="settingsDropinRefreshNote">(F5 to Refresh)</span></button>
+                    <div id="settingsDropinModsContent">
                         
                     </div>
                 </div>
                 <div id="settingsShadersContainer">
-                    <div class="settingsModsHeader">光影包</div>
-                    <div id="settingsShaderpackDesc">啟用或禁用光影包 請注意，光影包只有在強大的電腦配置下才能流暢運行 您可以在此處添加自定義包</div>
+                    <div class="settingsModsHeader">Shaderpacks</div>
+                    <div id="settingsShaderpackDesc">Enable or disable shaders. Please note, shaders will only run smoothly on powerful setups. You may add custom packs here.</div>
                     <div id="settingsShaderpackWrapper">
                         <button id="settingsShaderpackButton"> + </button>
                         <div class="settingsSelectContainer">
-                            <div class="settingsSelectSelected" id="settingsShadersSelected">選擇光影包</div>
+                            <div class="settingsSelectSelected" id="settingsShadersSelected">Select Shaderpack</div>
                             <div class="settingsSelectOptions" id="settingsShadersOptions" hidden>
 
                             </div>
@@ -169,8 +169,8 @@
         </div>
         <div id="settingsTabJava" class="settingsTab" style="display: none;">
             <div class="settingsTabHeader">
-                <span class="settingsTabHeaderText">Java&記憶體設定</span>
-                <span class="settingsTabHeaderDesc">管理 Java 設定(進階)</span>
+                <span class="settingsTabHeaderText">Java Settings</span>
+                <span class="settingsTabHeaderDesc">Manage the Java configuration (advanced).</span>
             </div>
             <div class="settingsSelServContainer">
                 <div class="settingsSelServContent">
@@ -178,44 +178,44 @@
                 </div>
                 <div class="settingsSwitchServerContainer">
                     <div class="settingsSwitchServerContent">
-                        <button class="settingsSwitchServerButton">切換</button>
+                        <button class="settingsSwitchServerButton">Switch</button>
                     </div>
                 </div>
             </div>
             <div id="settingsMemoryContainer">
-                <div id="settingsMemoryTitle">記憶體設定</div>
+                <div id="settingsMemoryTitle">Memory</div>
                 <div id="settingsMemoryContent">
                     <div id="settingsMemoryContentLeft">
                         <div class="settingsMemoryContentItem">
-                            <span class="settingsMemoryHeader">最大記憶體</span>
+                            <span class="settingsMemoryHeader">Maximum RAM</span>
                             <div class="settingsMemoryActionContainer">
                                 <div id="settingsMaxRAMRange" class="rangeSlider" cValue="MaxRAM" serverDependent min="3" max="8" value="3" step="0.5">
                                     <div class="rangeSliderBar"></div>
                                     <div class="rangeSliderTrack"></div>
                                 </div>
-                                <span id="settingsMaxRAMLabel" class="settingsMemoryLabel">4G</span>
+                                <span id="settingsMaxRAMLabel" class="settingsMemoryLabel">3G</span>
                             </div>
                         </div>
                         <div class="settingsMemoryContentItem">
-                            <span class="settingsMemoryHeader">最小記憶體</span>
+                            <span class="settingsMemoryHeader">Minimum RAM</span>
                             <div class="settingsMemoryActionContainer">
                                 <div id="settingsMinRAMRange" class="rangeSlider" cValue="MinRAM" serverDependent min="3" max="8" value="3" step="0.5">
                                     <div class="rangeSliderBar"></div>
                                     <div class="rangeSliderTrack"></div>
                                 </div>
-                                <span id="settingsMinRAMLabel" class="settingsMemoryLabel">2G</span>
+                                <span id="settingsMinRAMLabel" class="settingsMemoryLabel">3G</span>
                             </div>
                         </div>
-                        <div id="settingsMemoryDesc">建議的最小記憶體為 6 GB 將最小值和最大值設置為相同的值可以減少滯後</div>
+                        <div id="settingsMemoryDesc">The recommended minimum RAM is 3 gigabytes. Setting the minimum and maximum values to the same value may reduce lag.</div>
                     </div>
                     <div id="settingsMemoryContentRight">
                         <div id="settingsMemoryStatus">
                             <div class="settingsMemoryStatusContainer">
-                                <span class="settingsMemoryStatusTitle">電腦總額</span>
+                                <span class="settingsMemoryStatusTitle">Total</span>
                                 <span id="settingsMemoryTotal" class="settingsMemoryStatusValue">16G</span>
                             </div>
                             <div class="settingsMemoryStatusContainer">
-                                <span class="settingsMemoryStatusTitle">目前可用</span>
+                                <span class="settingsMemoryStatusTitle">Available</span>
                                 <span id="settingsMemoryAvail" class="settingsMemoryStatusValue">7.3G</span>
                             </div>
                         </div>
@@ -223,9 +223,9 @@
                 </div>
             </div>
             <div class="settingsFileSelContainer">
-                <div class="settingsFileSelTitle">可執行的 Java</div>
+                <div class="settingsFileSelTitle">Java Executable</div>
                 <div class="settingsFileSelContent">
-                    <div id="settingsJavaExecDetails">選擇: Java 8 Update 172 (x64)</div>
+                    <div id="settingsJavaExecDetails">Selected: Java 8 Update 172 (x64)</div>
                     <div class="settingsFileSelActions">
                         <div class="settingsFileSelIcon">
                             <svg class="settingsFileSelSVG" x="0px" y="0px" viewBox="0 0 305.001 305.001">
@@ -245,10 +245,10 @@
                         <button class="settingsFileSelButton" id="settingsJavaExecSel" dialogTitle="Select Java Executable" dialogDirectory="false">Choose File</button>
                     </div>
                 </div>
-                <div class="settingsFileSelDesc">在遊戲啟動前會先檢查是否可執行 Java <strong id="settingsJavaReqDesc">需求 Java 8 x64</strong><br>The path should end with <strong>bin<%= process.platform === 'win32' ? '\\javaw.exe' : '/java' %></strong>.</div>
+                <div class="settingsFileSelDesc">The Java executable is validated before game launch. <strong id="settingsJavaReqDesc">Requires Java 8 x64.</strong><br>The path should end with <strong>bin<%= process.platform === 'win32' ? '\\javaw.exe' : '/java' %></strong>.</div>
             </div>
             <div id="settingsJVMOptsContainer">
-                <div id="settingsJVMOptsTitle">增加 JVM 選項</div>
+                <div id="settingsJVMOptsTitle">Additional JVM Options</div>
                 <div id="settingsJVMOptsContent">
                     <div class="settingsFileSelIcon">
                         <svg class="settingsFileSelSVG" x="0px" y="0px" viewBox="0 0 305.001 305.001">
@@ -264,17 +264,17 @@
                             </g>
                         </svg>
                     </div>
-                    <input id="settingsJVMOptsVal" cValue="JVMOptions" serverDependent disabled> <!--<input id="settingsJVMOptsVal" cValue="JVMOptions" serverDependent type="text">-->
+                    <input id="settingsJVMOptsVal" cValue="JVMOptions" serverDependent type="text">
                 </div>
-                <div id="settingsJVMOptsDesc">有任何問題請尋找 憶蝶夢海 管理員 <br><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/<%= process.platform === 'win32' ? 'windows' : 'unix' %>/java.html" id="settingsJvmOptsLink">Available Options for Java 8</a>.</div>
+                <div id="settingsJVMOptsDesc">Options to be provided to the JVM at runtime. <em>-Xms</em> and <em>-Xmx</em> should not be included.<br><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/<%= process.platform === 'win32' ? 'windows' : 'unix' %>/java.html" id="settingsJvmOptsLink">Available Options for Java 8</a>.</div>
             </div>
         </div>
         <div id="settingsTabLauncher" class="settingsTab" style="display: none;">
             <div class="settingsTabHeader">
-                <span class="settingsTabHeaderText">遊戲資料目錄</span>
-                <span class="settingsTabHeaderDesc">修改模組包安裝位置</span>
+                <span class="settingsTabHeaderText">Launcher Settings</span>
+                <span class="settingsTabHeaderDesc">Options related to the launcher itself.</span>
             </div>
-            <!--<div class="settingsFieldContainer">
+            <div class="settingsFieldContainer">
                 <div class="settingsFieldLeft">
                     <span class="settingsFieldTitle">Allow Pre-Release Updates.</span>
                     <span class="settingsFieldDesc">Pre-Releases include new features which may have not been fully tested or integrated.<br>This will always be true if you are using a pre-release version.</span>
@@ -285,10 +285,10 @@
                         <span class="toggleSwitchSlider"></span>
                     </label>
                 </div>
-            </div>-->
+            </div>
             <div class="settingsFileSelContainer">
                 <div class="settingsFileSelContent">
-                    <div class="settingsFieldTitle" id="settingsDataDirTitle">遊戲路徑</div>
+                    <div class="settingsFieldTitle" id="settingsDataDirTitle">Data Directory</div>
                     <div class="settingsFileSelActions">
                         <div class="settingsFileSelIcon">
                             <svg class="settingsFileSelSVG">
@@ -303,87 +303,87 @@
                         <button class="settingsFileSelButton" dialogTitle="Select Data Directory" dialogDirectory="true">Choose Folder</button>
                     </div>
                 </div>
-                <div class="settingsFileSelDesc">所有遊戲文件和 Java 安裝將存儲在此資料夾中<br>截圖和世界存檔會儲存在相應的伺服器配置實例資料夾中</div>
+                <div class="settingsFileSelDesc">All game files and local Java installations will be stored in the data directory.<br>Screenshots and world saves are stored in the instance folder for the corresponding server configuration.</div>
             </div>
         </div>
         <div id="settingsTabAbout" class="settingsTab" style="display: none;">
             <div class="settingsTabHeader">
-                <span class="settingsTabHeaderText">關於</span>
-                <span class="settingsTabHeaderDesc">查看當前版本的信息和發行說明</span>
+                <span class="settingsTabHeaderText">About</span>
+                <span class="settingsTabHeaderDesc">View information and release notes for the current version.</span>
             </div>
             <div id="settingsAboutCurrentContainer">
                 <div id="settingsAboutCurrentContent">
                     <div id="settingsAboutCurrentHeadline">
                         <img id="settingsAboutLogo" src="./assets/images/SealCircle.png">
-                        <span id="settingsAboutTitle">BDSTW Launcher</span>
+                        <span id="settingsAboutTitle">Helios Launcher</span>
                     </div>
                     <div id="settingsAboutCurrentVersion">
                         <div id="settingsAboutCurrentVersionCheck">&#10003;</div>
                         <div id="settingsAboutCurrentVersionDetails">
-                            <span id="settingsAboutCurrentVersionTitle">穩定版本</span>
+                            <span id="settingsAboutCurrentVersionTitle">Stable Release</span>
                             <div id="settingsAboutCurrentVersionLine">
-                                <span id="settingsAboutCurrentVersionText">版本 </span>
+                                <span id="settingsAboutCurrentVersionText">Version </span>
                                 <span id="settingsAboutCurrentVersionValue">0.0.1-alpha.12</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div id="settingsAboutButtons">
-                    <a href="https://github.com/Stevebell-sp/BDSTWLauncherr" id="settingsAboutSourceButton" class="settingsAboutButton" hidden>Source (GitHub)</a>
+                    <a href="https://github.com/dscalZi/HeliosLauncher" id="settingsAboutSourceButton" class="settingsAboutButton">Source (GitHub)</a>
                     <!-- The following must be included in third-party usage. -->
                     <!-- <a href="https://github.com/dscalzi/HeliosLauncher" id="settingsAboutSourceButton" class="settingsAboutButton">Original Source</a> -->
-                    <a href="https://bdstw.org/support/tickets" id="settingsAboutSupportButton" class="settingsAboutButton">支援</a>
-                    <a href="#" id="settingsAboutDevToolsButton" class="settingsAboutButton" hidden>開發者控制台</a>
+                    <a href="https://github.com/dscalZi/HeliosLauncher/issues" id="settingsAboutSupportButton" class="settingsAboutButton">Support</a>
+                    <a href="#" id="settingsAboutDevToolsButton" class="settingsAboutButton">DevTools Console</a>
                 </div>
             </div>
             <div class="settingsChangelogContainer">
                 <div class="settingsChangelogContent">
                     <div class="settingsChangelogHeadline">
-                        <div class="settingsChangelogLabel">發行說明</div>
-                        <div class="settingsChangelogTitle">更新紀錄</div>
+                        <div class="settingsChangelogLabel">Release Notes</div>
+                        <div class="settingsChangelogTitle">Changelog</div>
                     </div>
                     <div class="settingsChangelogText">
-                        沒有發佈說明
+                        No Release Notes
                     </div>
                 </div>
                 <div class="settingsChangelogActions">
-                    <a class="settingsChangelogButton settingsAboutButton" href="#" hidden>在官網上查看發行說明</a>
+                    <a class="settingsChangelogButton settingsAboutButton" href="#">View Release Notes on GitHub</a>
                 </div>
             </div>
         </div>
         <div id="settingsTabUpdate" class="settingsTab" style="display: none;">
             <div class="settingsTabHeader">
-                <span class="settingsTabHeaderText">登入器更新</span>
-                <span class="settingsTabHeaderDesc">下載、安裝並檢查登入器的更新</span>
+                <span class="settingsTabHeaderText">Launcher Updates</span>
+                <span class="settingsTabHeaderDesc">Download, install, and review updates for the launcher.</span>
             </div>
             <div id="settingsUpdateStatusContainer">
                 <div id="settingsUpdateStatusContent">
                     <div id="settingsUpdateStatusHeadline">
-                        <span id="settingsUpdateTitle">您正在執行最新版本</span>
+                        <span id="settingsUpdateTitle">You Are Running the Latest Version</span>
                     </div>
                     <div id="settingsUpdateVersion">
                         <div id="settingsUpdateVersionCheck">&#10003;</div>
                         <div id="settingsUpdateVersionDetails">
-                            <span id="settingsUpdateVersionTitle">穩定版本</span>
+                            <span id="settingsUpdateVersionTitle">Stable Release</span>
                             <div id="settingsUpdateVersionLine">
-                                <span id="settingsUpdateVersionText">版本 </span>
+                                <span id="settingsUpdateVersionText">Version </span>
                                 <span id="settingsUpdateVersionValue">0.0.1-alpha.18</span>
                             </div>
                         </div>
                     </div>
                     <div id="settingsUpdateActionContainer">
-                        <button id="settingsUpdateActionButton">檢查更新</button>
+                        <button id="settingsUpdateActionButton">Check for Updates</button>
                     </div>
                 </div>
             </div>
             <div class="settingsChangelogContainer">
                 <div class="settingsChangelogContent">
                     <div class="settingsChangelogHeadline">
-                        <div class="settingsChangelogLabel">最新消息</div>
-                        <div class="settingsChangelogTitle">U更新發行說明</div>
+                        <div class="settingsChangelogLabel">What's New</div>
+                        <div class="settingsChangelogTitle">Update Release Notes</div>
                     </div>
                     <div class="settingsChangelogText">
-                        沒有發布說明
+                        No Release Notes
                     </div>
                 </div>
             </div>
