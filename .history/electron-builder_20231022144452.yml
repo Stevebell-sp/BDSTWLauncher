@@ -1,8 +1,8 @@
 appId: 'bdstwlauncher'
-productName: 'BDSTW Launcher'
+productName: 'BDSTW-Launcher'
 artifactName: '${productName}-setup-${version}.${ext}'
 
-copyright: 'Copyright © 2018-2022 Daniel Scalzi'
+copyright: 'Copyright © 2018-2023 憶蝶夢海社群 DC stevebell_0416'
 
 asar: true
 compression: 'maximum'
@@ -21,10 +21,10 @@ win:
 
 # Windows Installer Configuration
 nsis:
-  oneClick: false
+  oneClick: true
   perMachine: false
   allowElevation: true
-  allowToChangeInstallationDirectory: true
+  allowToChangeInstallationDirectory: false
 
 # macOS Configuration
 mac:
