@@ -1,8 +1,8 @@
 {
   "name": "bdstwlauncher",
-  "version": "2.6.4",
+  "version": "2.6.5",
   "productName": "BDSTW Launcher",
-  "description": "憶蝶夢海社群伺服器專用模組登入器",
+  "description": "BDSTW Community 伺服器專用登入器",
   "author": "Steve (https://github.com/Stevebell-sp)",
   "license": "UNLICENSED",
   "homepage": "https://github.com/Stevebell-sp/BDSTWLauncher",
