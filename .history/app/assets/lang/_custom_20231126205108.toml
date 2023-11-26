@@ -1,0 +1,20 @@
+# Custom Language File for Launcher Customizer
+
+[ejs.app]
+title = "BDSTW Launcher"
+
+[ejs.landing]
+mediaGitHubURL = "https://bdstw.org/"
+mediaTwitterURL = "#"
+mediaInstagramURL = "#"
+mediaYouTubeURL = "https://www.youtube.com/@stevebell0416"
+mediaDiscordURL = "https://discord.gg/mcjtJz9gUH"
+
+[ejs.settings]
+sourceGithubLink = "https://bdstw.org/"
+supportLink = "https://bdstw.org/support/tickets"
+
+[ejs.welcome]
+welcomeHeader = "歡迎來到 憶蝶夢海社群 登入器"
+welcomeDescription = "此登入器由 憶蝶夢海社群 小誠 DC:stevebell_0416 製作"
+welcomeDescCTA = "我們會自動幫您更新至伺服器當前正在遊玩的模組包"
