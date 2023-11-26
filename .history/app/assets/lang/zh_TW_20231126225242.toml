@@ -280,18 +280,18 @@ checkForUpdatesButton = "檢查更新"
 checkingForUpdatesButton = "正在檢查更新中.."
 
 [js.uibinder.startup]
-fatalErrorTitle = "致命錯誤: 無法載入伺服器索引"
-fatalErrorMessage = "無法連接到我們的伺服器下載啟動器資料 沒有本地資料可供使用 <br><br>登入器資料是一個重要的文件，提供最新的伺服器訊息 如果缺少此文件，登入器將無法使用 請確保您已連接到網際網路並重新啟動啟動器"
-closeButton = "關閉"
+fatalErrorTitle = "Fatal Error: Unable to Load Distribution Index"
+fatalErrorMessage = "A connection could not be established to our servers to download the distribution index. No local copies were available to load. <br><br>The distribution index is an essential file which provides the latest server information. The launcher is unable to start without it. Ensure you are connected to the internet and relaunch the application."
+closeButton = "Close"
 
 [js.uibinder.validateAccount]
-failedMessageTitle = "無法更新登入"
-failedMessage = "我們無法更新 <strong>{account}</strong> 的登入資訊  請選擇另一個帳號或再登入一次該帳號"
-failedMessageSelectAnotherAccount = "我們無法更新 <strong>{account}</strong> 的登入資訊 請登入一次該帳號"
-loginButton = "登入"
-selectAnotherAccountButton = "選擇另一個帳號"
+failedMessageTitle = "Failed to Refresh Login"
+failedMessage = "We were unable to refresh the login for <strong>{account}</strong>. Please select another account or login again."
+failedMessageSelectAnotherAccount = "We were unable to refresh the login for <strong>{account}</strong>. Please login again."
+loginButton = "Login"
+selectAnotherAccountButton = "Select Another Account"
 
 [js.uicore.autoUpdate]
-checkingForUpdateButton = "正在檢查更新.."
-installNowButton = "馬上更新"
-checkForUpdatesButton = "檢查更新"
+checkingForUpdateButton = "Checking for Updates..."
+installNowButton = "Install Now"
+checkForUpdatesButton = "Check for Updates"

@@ -245,53 +245,53 @@ cancelButton = "取消"
 [js.settings.authAccountPopulate]
 username = "角色名稱"
 uuid = "UUID"
-selectAccount = "選擇帳號"
-selectedAccount = "已選擇的帳號 ✓"
-logout = "登出"
+selectAccount = "Select Account"
+selectedAccount = "Selected Account ✓"
+logout = "Log Out"
 
 [js.settings.dropinMods]
-removeButton = "移除"
-deleteFailedTitle = "刪除失敗<br>拖入的模組 {fullName}"
-deleteFailedMessage = "請確認該模組沒有正在被使用，請在試一次"
-failedToggleTitle = "切換失敗<br>一個或很多個拖入模組"
-okButton = "好"
+removeButton = "Remove"
+deleteFailedTitle = "Failed to Delete<br>Drop-in Mod {fullName}"
+deleteFailedMessage = "Make sure the file is not in use and try again."
+failedToggleTitle = "Failed to Toggle<br>One or More Drop-in Mods"
+okButton = "Okay"
 
 [js.settings.serverListing]
-mainServer = "主要伺服器"
+mainServer = "Main Server"
 
 [js.settings.java]
-selectedJava = "選擇: Java {version} ({vendor})"
-invalidSelection = "無效的選擇"
-requiresJava = "需求 Java {major} x64."
-availableOptions = ""
+selectedJava = "Selected: Java {version} ({vendor})"
+invalidSelection = "Invalid Selection"
+requiresJava = "Requires Java {major} x64."
+availableOptions = "Available Options for Java {major} (HotSpot VM)"
 
 [js.settings.about]
-preReleaseTitle = "預發行版"
-stableReleaseTitle = "正式版"
-releaseNotesFailed = "無法載入 版本紀錄"
+preReleaseTitle = "Pre-release"
+stableReleaseTitle = "Stable Release"
+releaseNotesFailed = "Failed to load release notes."
 
 [js.settings.updates]
-newReleaseTitle = "有新的版本可用"
-newPreReleaseTitle = "有新的預發行可用"
-downloadingButton = "下載中.."
-downloadButton = '從 GitHub 下載<span style="font-size: 10px;color: gray;text-shadow: none !important;">關閉登入器並執行 dmg 以進行更新</span>'
-latestVersionTitle = "您正在執行最新版本"
-checkForUpdatesButton = "檢查更新"
-checkingForUpdatesButton = "正在檢查更新中.."
+newReleaseTitle = "New Release Available"
+newPreReleaseTitle = "New Pre-release Available"
+downloadingButton = "Downloading.."
+downloadButton = 'Download from GitHub<span style="font-size: 10px;color: gray;text-shadow: none !important;">Close the launcher and run the dmg to update.</span>'
+latestVersionTitle = "You Are Running the Latest Version"
+checkForUpdatesButton = "Check for Updates"
+checkingForUpdatesButton = "Checking for Updates.."
 
 [js.uibinder.startup]
-fatalErrorTitle = "致命錯誤: 無法載入伺服器索引"
-fatalErrorMessage = "無法連接到我們的伺服器下載啟動器資料 沒有本地資料可供使用 <br><br>登入器資料是一個重要的文件，提供最新的伺服器訊息 如果缺少此文件，登入器將無法使用 請確保您已連接到網際網路並重新啟動啟動器"
-closeButton = "關閉"
+fatalErrorTitle = "Fatal Error: Unable to Load Distribution Index"
+fatalErrorMessage = "A connection could not be established to our servers to download the distribution index. No local copies were available to load. <br><br>The distribution index is an essential file which provides the latest server information. The launcher is unable to start without it. Ensure you are connected to the internet and relaunch the application."
+closeButton = "Close"
 
 [js.uibinder.validateAccount]
-failedMessageTitle = "無法更新登入"
-failedMessage = "我們無法更新 <strong>{account}</strong> 的登入資訊  請選擇另一個帳號或再登入一次該帳號"
-failedMessageSelectAnotherAccount = "我們無法更新 <strong>{account}</strong> 的登入資訊 請登入一次該帳號"
-loginButton = "登入"
-selectAnotherAccountButton = "選擇另一個帳號"
+failedMessageTitle = "Failed to Refresh Login"
+failedMessage = "We were unable to refresh the login for <strong>{account}</strong>. Please select another account or login again."
+failedMessageSelectAnotherAccount = "We were unable to refresh the login for <strong>{account}</strong>. Please login again."
+loginButton = "Login"
+selectAnotherAccountButton = "Select Another Account"
 
 [js.uicore.autoUpdate]
-checkingForUpdateButton = "正在檢查更新.."
-installNowButton = "馬上更新"
-checkForUpdatesButton = "檢查更新"
+checkingForUpdateButton = "Checking for Updates..."
+installNowButton = "Install Now"
+checkForUpdatesButton = "Check for Updates"

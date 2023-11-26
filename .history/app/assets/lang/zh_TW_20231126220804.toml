@@ -191,107 +191,107 @@ extractingJava = "提取 Java 中"
 javaInstalled = "已安裝 Java!"
 
 [js.landing.dlAsync]
-loadingServerInfo = "正在載入伺服器資訊.."
-fatalError = "致命錯誤"
-unableToLoadDistributionIndex = "無法載入伺服器索引的內容 請洽詢社群管理員以獲取更多詳細信息"
-pleaseWait = "請稍後.."
-errorDuringLaunchTitle = "啟動時發生錯誤"
-seeConsoleForDetails = "請洽詢社群管理員以獲取更多詳細信息"
-validatingFileIntegrity = "驗證檔案完整性.."
-errorDuringFileVerificationTitle = "文件驗證時發生錯誤"
-downloadingFiles = "下載檔案中.."
-errorDuringFileDownloadTitle = "檔案下載時發生錯誤"
-preparingToLaunch = "準備啟動.."
-launchingGame = "啟動遊戲中.."
-launchWrapperNotDownloaded = "主要檔案下載失敗, 因此，遊戲無法啟動。<br><br>為了解決這個問題，請暫時關閉您的防毒軟體並重新啟動遊戲。<br><br>如果還有問題請洽登入器作者"
-doneEnjoyServer = "完成 好好享受伺服器吧!"
-checkConsoleForDetails = "請洽詢社群管理員以獲取更多詳細信息"
+loadingServerInfo = "Loading server information.."
+fatalError = "Fatal Error"
+unableToLoadDistributionIndex = "Could not load a copy of the distribution index. See the console (CTRL + Shift + i) for more details."
+pleaseWait = "Please wait.."
+errorDuringLaunchTitle = "Error During Launch"
+seeConsoleForDetails = "See console (CTRL + Shift + i) for more details."
+validatingFileIntegrity = "Validating file integrity.."
+errorDuringFileVerificationTitle = "Error During File Verification"
+downloadingFiles = "Downloading files.."
+errorDuringFileDownloadTitle = "Error During File Download"
+preparingToLaunch = "Preparing to launch.."
+launchingGame = "Launching game.."
+launchWrapperNotDownloaded = "The main file, LaunchWrapper, failed to download properly. As a result, the game cannot launch.<br><br>To fix this issue, temporarily turn off your antivirus software and launch the game again.<br><br>If you have time, please <a href=\"https://github.com/dscalzi/HeliosLauncher/issues\">submit an issue</a> and let us know what antivirus software you use. We'll contact them and try to straighten things out."
+doneEnjoyServer = "Done. Enjoy the server!"
+checkConsoleForDetails = "Please check the console (CTRL + Shift + i) for more details."
 
 [js.landing.news]
-checking = "檢查公告"
+checking = "Checking for News"
 
 [js.landing.discord]
-loading = "啟動遊戲中.."
-joining = "正在加入憶蝶夢海伺服器!"
-joined = "正在加入憶蝶夢海伺服器!"
+loading = "Loading game.."
+joining = "Sailing to Westeros!"
+joined = "Exploring the Realm!"
 
 [js.overlay]
-dismiss = "離開"
+dismiss = "Dismiss"
 
 [js.settings.fileSelectors]
-executables = "可執行"
-allFiles = "所有檔案"
+executables = "Executables"
+allFiles = "All Files"
 
 [js.settings.mstfLogin]
-errorTitle = "發生了一些問題"
-errorMessage = "Microsoft 認證失敗 請再試一次"
+errorTitle = "Something Went Wrong"
+errorMessage = "Microsoft authentication failed. Please try again."
 okButton = "OK"
 
 [js.settings.mstfLogout]
-errorTitle = "發生了一些問題"
-errorMessage = "Microsoft 登出失敗 請再試一次"
+errorTitle = "Something Went Wrong"
+errorMessage = "Microsoft logout failed. Please try again."
 okButton = "OK"
 
 [js.settings.authAccountSelect]
-selectButton = "選擇帳號"
-selectedButton = "已選擇帳號 &#10004;"
+selectButton = "Select Account"
+selectedButton = "Selected Account &#10004;"
 
 [js.settings.authAccountLogout]
-lastAccountWarningTitle = "警告<br>這是您的最後一個帳號"
-lastAccountWarningMessage = "為了使用啟動器，您必須至少登入一個帳號 <br>如果您登出了之後您需要重新登入 <br>我們不提供離線遊玩 <br><br>您確定要登出嗎?"
-confirmButton = "我確定"
-cancelButton = "取消"
+lastAccountWarningTitle = "Warning<br>This is Your Last Account"
+lastAccountWarningMessage = "In order to use the launcher you must be logged into at least one account. You will need to login again after.<br><br>Are you sure you want to log out?"
+confirmButton = "I'm Sure"
+cancelButton = "Cancel"
 
 [js.settings.authAccountPopulate]
-username = "角色名稱"
+username = "Username"
 uuid = "UUID"
-selectAccount = "選擇帳號"
-selectedAccount = "已選擇的帳號 ✓"
-logout = "登出"
+selectAccount = "Select Account"
+selectedAccount = "Selected Account ✓"
+logout = "Log Out"
 
 [js.settings.dropinMods]
-removeButton = "移除"
-deleteFailedTitle = "刪除失敗<br>拖入的模組 {fullName}"
-deleteFailedMessage = "請確認該模組沒有正在被使用，請在試一次"
-failedToggleTitle = "切換失敗<br>一個或很多個拖入模組"
-okButton = "好"
+removeButton = "Remove"
+deleteFailedTitle = "Failed to Delete<br>Drop-in Mod {fullName}"
+deleteFailedMessage = "Make sure the file is not in use and try again."
+failedToggleTitle = "Failed to Toggle<br>One or More Drop-in Mods"
+okButton = "Okay"
 
 [js.settings.serverListing]
-mainServer = "主要伺服器"
+mainServer = "Main Server"
 
 [js.settings.java]
-selectedJava = "選擇: Java {version} ({vendor})"
-invalidSelection = "無效的選擇"
-requiresJava = "需求 Java {major} x64."
-availableOptions = ""
+selectedJava = "Selected: Java {version} ({vendor})"
+invalidSelection = "Invalid Selection"
+requiresJava = "Requires Java {major} x64."
+availableOptions = "Available Options for Java {major} (HotSpot VM)"
 
 [js.settings.about]
-preReleaseTitle = "預發行版"
-stableReleaseTitle = "正式版"
-releaseNotesFailed = "無法載入 版本紀錄"
+preReleaseTitle = "Pre-release"
+stableReleaseTitle = "Stable Release"
+releaseNotesFailed = "Failed to load release notes."
 
 [js.settings.updates]
-newReleaseTitle = "有新的版本可用"
-newPreReleaseTitle = "有新的預發行可用"
-downloadingButton = "下載中.."
-downloadButton = '從 GitHub 下載<span style="font-size: 10px;color: gray;text-shadow: none !important;">關閉登入器並執行 dmg 以進行更新</span>'
-latestVersionTitle = "您正在執行最新版本"
-checkForUpdatesButton = "檢查更新"
-checkingForUpdatesButton = "正在檢查更新中.."
+newReleaseTitle = "New Release Available"
+newPreReleaseTitle = "New Pre-release Available"
+downloadingButton = "Downloading.."
+downloadButton = 'Download from GitHub<span style="font-size: 10px;color: gray;text-shadow: none !important;">Close the launcher and run the dmg to update.</span>'
+latestVersionTitle = "You Are Running the Latest Version"
+checkForUpdatesButton = "Check for Updates"
+checkingForUpdatesButton = "Checking for Updates.."
 
 [js.uibinder.startup]
-fatalErrorTitle = "致命錯誤: 無法載入伺服器索引"
-fatalErrorMessage = "無法連接到我們的伺服器下載啟動器資料 沒有本地資料可供使用 <br><br>登入器資料是一個重要的文件，提供最新的伺服器訊息 如果缺少此文件，登入器將無法使用 請確保您已連接到網際網路並重新啟動啟動器"
-closeButton = "關閉"
+fatalErrorTitle = "Fatal Error: Unable to Load Distribution Index"
+fatalErrorMessage = "A connection could not be established to our servers to download the distribution index. No local copies were available to load. <br><br>The distribution index is an essential file which provides the latest server information. The launcher is unable to start without it. Ensure you are connected to the internet and relaunch the application."
+closeButton = "Close"
 
 [js.uibinder.validateAccount]
-failedMessageTitle = "無法更新登入"
-failedMessage = "我們無法更新 <strong>{account}</strong> 的登入資訊  請選擇另一個帳號或再登入一次該帳號"
-failedMessageSelectAnotherAccount = "我們無法更新 <strong>{account}</strong> 的登入資訊 請登入一次該帳號"
-loginButton = "登入"
-selectAnotherAccountButton = "選擇另一個帳號"
+failedMessageTitle = "Failed to Refresh Login"
+failedMessage = "We were unable to refresh the login for <strong>{account}</strong>. Please select another account or login again."
+failedMessageSelectAnotherAccount = "We were unable to refresh the login for <strong>{account}</strong>. Please login again."
+loginButton = "Login"
+selectAnotherAccountButton = "Select Another Account"
 
 [js.uicore.autoUpdate]
-checkingForUpdateButton = "正在檢查更新.."
-installNowButton = "馬上更新"
-checkForUpdatesButton = "檢查更新"
+checkingForUpdateButton = "Checking for Updates..."
+installNowButton = "Install Now"
+checkForUpdatesButton = "Check for Updates"
