@@ -133,9 +133,9 @@
                 </div>
             </div>
             <div id="settingsModsContainer">
-                <div id="settingsReqModsContainer" hidden>
-                    <div class="settingsModsHeader" hidden><%- lang('settings.requiredMods') %></div>
-                    <div id="settingsReqModsContent" hidden>
+                <div id="settingsReqModsContainer">
+                    <div class="settingsModsHeader"><%- lang('settings.requiredMods') %></div>
+                    <div id="settingsReqModsContent">
 
                     </div>
                 </div>
@@ -146,9 +146,9 @@
                     </div>
                 </div>
                 <div id="settingsDropinModsContainer">
-                    <div class="settingsModsHeader" hidden><%- lang('settings.dropinMods') %></div>
-                    <button id="settingsDropinFileSystemButton" hidden><%- lang('settings.addMods') %> <span id="settingsDropinRefreshNote"><%- lang('settings.dropinRefreshNote') %></span></button>
-                    <div id="settingsDropinModsContent" hidden>
+                    <div class="settingsModsHeader"><%- lang('settings.dropinMods') %></div>
+                    <button id="settingsDropinFileSystemButton"><%- lang('settings.addMods') %> <span id="settingsDropinRefreshNote"><%- lang('settings.dropinRefreshNote') %></span></button>
+                    <div id="settingsDropinModsContent">
                         
                     </div>
                 </div>
@@ -264,7 +264,7 @@
                             </g>
                         </svg>
                     </div>
-                    <input id="settingsJVMOptsVal" cValue="JVMOptions" serverDependent disabled>  <!---<input id="settingsJVMOptsVal" cValue="JVMOptions" serverDependent type="text">--->
+                    <input id="settingsJVMOptsVal" cValue="JVMOptions" serverDependent type="text">
                 </div>
                 <div id="settingsJVMOptsDesc"><%- lang('settings.jvmOptsDesc') %><br><a href="#" id="settingsJvmOptsLink"><!-- Available Options --></a></div>
             </div>
@@ -329,10 +329,10 @@
                     </div>
                 </div>
                 <div id="settingsAboutButtons">
-                    <a href="<%- lang('settings.sourceGithubLink') %>" id="settingsAboutSourceButton" class="settingsAboutButton" hidden><%- lang('settings.sourceGithub') %></a>
+                    <a href="<%- lang('settings.sourceGithubLink') %>" id="settingsAboutSourceButton" class="settingsAboutButton"><%- lang('settings.sourceGithub') %></a>
                     <!-- The following must be included in third-party usage. -->
                     <!-- <a href="https://github.com/dscalzi/HeliosLauncher" id="settingsAboutSourceButton" class="settingsAboutButton">Original Source</a> -->
-                    <a href="<%- lang('settings.supportLink') %>" id="settingsAboutSupportButton" class="settingsAboutButton" hidden><%- lang('settings.support') %></a>
+                    <a href="<%- lang('settings.supportLink') %>" id="settingsAboutSupportButton" class="settingsAboutButton"><%- lang('settings.support') %></a>
                     <a href="#" id="settingsAboutDevToolsButton" class="settingsAboutButton"><%- lang('settings.devToolsConsole') %></a>
                 </div>
             </div>
@@ -347,7 +347,7 @@
                     </div>
                 </div>
                 <div class="settingsChangelogActions">
-                    <a class="settingsChangelogButton settingsAboutButton" href="#" hidden><%- lang('settings.viewReleaseNotes') %></a>
+                    <a class="settingsChangelogButton settingsAboutButton" href="#"><%- lang('settings.viewReleaseNotes') %></a>
                 </div>
             </div>
         </div>

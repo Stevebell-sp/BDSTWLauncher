@@ -53,11 +53,11 @@
                 <div class="settingsAuthAccountTypeHeader" hidden>
                     <div class="settingsAuthAccountTypeHeaderLeft" hidden>
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 9.677 9.667" hidden>
-                            <path d="M-26.332-12.098h2.715c-1.357.18-2.574 1.23-2.715 2.633z" fill="#fff" hidden>
+                            <path d="M-26.332-12.098h2.715c-1.357.18-2.574 1.23-2.715 2.633z" fill="#fff" />
                             <path d="M2.598.022h7.07L9.665 7c-.003 1.334-1.113 2.46-2.402 2.654H0V2.542C.134 1.2 1.3.195 2.598.022z" fill="#db2331" hidden>
                             <path d="M1.54 2.844c.314-.76 1.31-.46 1.954-.528.785-.083 1.503.272 2.1.758l.164-.9c.327.345.587.756.964 1.052.28.254.655-.342.86-.013.42.864.408 1.86.54 2.795l-.788-.373C6.9 4.17 5.126 3.052 3.656 3.685c-1.294.592-1.156 2.65.06 3.255 1.354.703 2.953.51 4.405.292-.07.42-.34.87-.834.816l-4.95.002c-.5.055-.886-.413-.838-.89l.04-4.315z" fill="#fff" hidden>
                         </svg>
-                        <span></span>   <!--<span><%- lang('settings.mojangAccount') %></span>-->
+                        <span><%- lang('settings.mojangAccount') %></span>
                     </div>
                     <div class="settingsAuthAccountTypeHeaderRight" hidden>
                         <button class="settingsAddAuthAccount" id="settingsAddMojangAccount" hidden><%- lang('settings.addMojangAccount') %></button>
@@ -133,9 +133,9 @@
                 </div>
             </div>
             <div id="settingsModsContainer">
-                <div id="settingsReqModsContainer" hidden>
-                    <div class="settingsModsHeader" hidden><%- lang('settings.requiredMods') %></div>
-                    <div id="settingsReqModsContent" hidden>
+                <div id="settingsReqModsContainer">
+                    <div class="settingsModsHeader"><%- lang('settings.requiredMods') %></div>
+                    <div id="settingsReqModsContent">
 
                     </div>
                 </div>
@@ -146,9 +146,9 @@
                     </div>
                 </div>
                 <div id="settingsDropinModsContainer">
-                    <div class="settingsModsHeader" hidden><%- lang('settings.dropinMods') %></div>
-                    <button id="settingsDropinFileSystemButton" hidden><%- lang('settings.addMods') %> <span id="settingsDropinRefreshNote"><%- lang('settings.dropinRefreshNote') %></span></button>
-                    <div id="settingsDropinModsContent" hidden>
+                    <div class="settingsModsHeader"><%- lang('settings.dropinMods') %></div>
+                    <button id="settingsDropinFileSystemButton"><%- lang('settings.addMods') %> <span id="settingsDropinRefreshNote"><%- lang('settings.dropinRefreshNote') %></span></button>
+                    <div id="settingsDropinModsContent">
                         
                     </div>
                 </div>
@@ -264,7 +264,7 @@
                             </g>
                         </svg>
                     </div>
-                    <input id="settingsJVMOptsVal" cValue="JVMOptions" serverDependent disabled>  <!---<input id="settingsJVMOptsVal" cValue="JVMOptions" serverDependent type="text">--->
+                    <input id="settingsJVMOptsVal" cValue="JVMOptions" serverDependent type="text">
                 </div>
                 <div id="settingsJVMOptsDesc"><%- lang('settings.jvmOptsDesc') %><br><a href="#" id="settingsJvmOptsLink"><!-- Available Options --></a></div>
             </div>
@@ -329,10 +329,10 @@
                     </div>
                 </div>
                 <div id="settingsAboutButtons">
-                    <a href="<%- lang('settings.sourceGithubLink') %>" id="settingsAboutSourceButton" class="settingsAboutButton" hidden><%- lang('settings.sourceGithub') %></a>
+                    <a href="<%- lang('settings.sourceGithubLink') %>" id="settingsAboutSourceButton" class="settingsAboutButton"><%- lang('settings.sourceGithub') %></a>
                     <!-- The following must be included in third-party usage. -->
                     <!-- <a href="https://github.com/dscalzi/HeliosLauncher" id="settingsAboutSourceButton" class="settingsAboutButton">Original Source</a> -->
-                    <a href="<%- lang('settings.supportLink') %>" id="settingsAboutSupportButton" class="settingsAboutButton" hidden><%- lang('settings.support') %></a>
+                    <a href="<%- lang('settings.supportLink') %>" id="settingsAboutSupportButton" class="settingsAboutButton"><%- lang('settings.support') %></a>
                     <a href="#" id="settingsAboutDevToolsButton" class="settingsAboutButton"><%- lang('settings.devToolsConsole') %></a>
                 </div>
             </div>
@@ -347,7 +347,7 @@
                     </div>
                 </div>
                 <div class="settingsChangelogActions">
-                    <a class="settingsChangelogButton settingsAboutButton" href="#" hidden><%- lang('settings.viewReleaseNotes') %></a>
+                    <a class="settingsChangelogButton settingsAboutButton" href="#"><%- lang('settings.viewReleaseNotes') %></a>
                 </div>
             </div>
         </div>
