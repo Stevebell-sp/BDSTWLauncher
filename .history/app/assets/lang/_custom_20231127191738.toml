@@ -1,0 +1,20 @@
+# Custom Language File for Launcher Customizer
+
+[ejs.app]
+title = "BDSTW Launcher"
+
+[ejs.landing]
+mediaGitHubURL = "https://bdstw.org/"
+mediaTwitterURL = "#"
+mediaInstagramURL = "#"
+mediaYouTubeURL = "https://www.youtube.com/@stevebell0416"
+mediaDiscordURL = "https://discord.gg/mcjtJz9gUH"
+
+[ejs.settings]
+sourceGithubLink = "https://bdstw.org/"
+supportLink = "https://bdstw.org/support/tickets"
+
+[ejs.welcome]
+welcomeHeader = "歡迎來到 BDSTW Community 啟動器"
+welcomeDescription = "啟動器由 BDSTW Community  製作"
+welcomeDescCTA = "我們會自動幫您更新至伺服器當前正在遊玩的模組包"
