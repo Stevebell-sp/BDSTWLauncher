@@ -8,7 +8,7 @@
 
 <p align="center">無需擔心安裝Java、Forge或其他模組，即可加入模組伺服器，我們會為您處理這些事情。</p>
 
-![Screenshot 1](https://i.imgur.com/6o7SmH6.png)
-![Screenshot 2](https://i.imgur.com/x3B34n1.png)
+![Screenshot 1](https://bdstw.org/storage/img/launcher1.png)
+![Screenshot 2](https://bdstw.org/storage/img/launcher2.png)
 
 
