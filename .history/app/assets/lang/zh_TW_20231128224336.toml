@@ -212,7 +212,7 @@ checking = "檢查公告"
 
 [js.landing.discord]
 loading = "遊戲開啟中.."
-joining = "正在加入憶蝶夢海模組伺服器.."
+joining = "正在加入憶蝶夢海模組伺服器!"
 joined = "正在遊玩憶蝶夢海模組伺服器!"
 
 [js.overlay]
