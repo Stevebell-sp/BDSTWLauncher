@@ -247,7 +247,7 @@
                 </div>
                 <div class="settingsFileSelDesc"><%- lang('settings.javaExecDesc') %> <strong id="settingsJavaReqDesc"><!-- Requires Java 8 x64. --></strong><br><%- lang('settings.javaPathDesc', {'pathSuffix': `bin${process.platform === 'win32' ? '\\javaw.exe' : '/java'}`}) %></div>
             </div>
-            <div id="settingsJVMOptsContainer">
+            <div id="settingsJVMOptsContainer" hidden>
                 <div id="settingsJVMOptsTitle"><%- lang('settings.jvmOptsTitle') %></div>
                 <div id="settingsJVMOptsContent">
                     <div class="settingsFileSelIcon">
@@ -264,7 +264,7 @@
                             </g>
                         </svg>
                     </div>
-                    <input id="settingsJVMOptsVal" cValue="JVMOptions" serverDependent disabled>  <!---<input id="settingsJVMOptsVal" cValue="JVMOptions" serverDependent type="text">--->
+                    <input id="settingsJVMOptsVal" cValue="JVMOptions" serverDependent type="text">  <!---<input id="settingsJVMOptsVal" cValue="JVMOptions" serverDependent type="text">--->
                 </div>
                 <div id="settingsJVMOptsDesc"><%- lang('settings.jvmOptsDesc') %><br><a href="#" id="settingsJvmOptsLink"><!-- Available Options --></a></div>
             </div>
