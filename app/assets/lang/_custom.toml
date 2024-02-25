@@ -1,7 +1,7 @@
 # Custom Language File for Launcher Customizer
 
 [ejs.app]
-title = "BDSTW Launcher"
+title = "BDSTW 億蝶夢海模組啟動器"
 
 [ejs.landing]
 mediaGitHubURL = "https://bdstw.org/"
