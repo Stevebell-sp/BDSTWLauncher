@@ -1,3 +1,9 @@
 用管理員開啟 Windows PowerShell
 > cd D:\GitHub\BDSTWLauncher
 > npm run dist
+
+"其他指令"
+> npm install
+> npm run dist:win
+> npm run dist:mac
+> npm run dist:linux
