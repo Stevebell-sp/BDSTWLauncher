@@ -7,7 +7,7 @@ const logger = LoggerUtil.getLogger('ConfigManager')
 
 const sysRoot = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
-const dataPath = path.join(sysRoot, '.helioslauncher')
+const dataPath = path.join(sysRoot, '.bdstw')
 
 const launcherDir = require('@electron/remote').app.getPath('userData')
 
@@ -81,7 +81,7 @@ const DEFAULT_CONFIG = {
             resWidth: 1280,
             resHeight: 720,
             fullscreen: false,
-            autoConnect: true,
+            autoConnect: false,
             launchDetached: true
         },
         launcher: {
@@ -521,10 +521,16 @@ function defaultJavaConfig8(ram) {
         maxRAM: resolveSelectedRAM(ram),
         executable: null,
         jvmOptions: [
+            '-XX:+AggressiveOpts',
+            '-XX:+UseCompressedOops',
+            '-XX:+UseCMSCompactAtFullCollection',
+            '-XX:+UseFastAccessorMethods',
+            '-XX:ParallelGCThreads=4',
             '-XX:+UseConcMarkSweepGC',
-            '-XX:+CMSIncrementalMode',
-            '-XX:-UseAdaptiveSizePolicy',
-            '-Xmn128M'
+            '-XX:CMSFullGCsBeforeCompaction=2',
+            '-XX:CMSInitiatingOccupancyFraction=70',
+            '-XX:-DisableExplicitGC',
+            '-XX:TargetSurvivorRatio=90'
         ],
     }
 }
