@@ -1,0 +1,3 @@
+用管理員開啟 Windows PowerShell
+> cd D:\GitHub\BDSTWLauncher
+> npm run dist
