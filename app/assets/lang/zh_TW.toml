@@ -1,0 +1,344 @@
+[ejs.landing]
+updateAvailableTooltip = "有更新可用"
+usernamePlaceholder = "使用者名稱"
+usernameEditButton = "編輯"
+settingsTooltip = "選項"
+serverStatus = "伺服器"
+serverStatusPlaceholder = "離線"
+mojangStatus = "MOJANG 狀態"
+mojangStatusTooltipTitle = "服務"
+mojangStatusNETitle = "Non&nbsp;Essential"
+newsButton = "公告"
+launchButton = "啟動遊戲"
+launchButtonPlaceholder = "&#8226; 沒有選擇的伺服器"
+launchDetails = "請稍後.."
+newsNavigationStatus = "{currentPage} of {totalPages}"
+newsErrorLoadSpan = "正在檢查公告.."
+newsErrorFailedSpan = "載入公告失敗"
+newsErrorRetryButton = "在試一次"
+newsErrorNoneSpan = "沒有公告"
+
+[ejs.login]
+loginCancelText = "取消"
+loginSubheader = "MINECRAFT 登入"
+loginEmailError = "* 錯誤"
+loginEmailPlaceholder = "電子郵件 或 使用者名稱"
+loginPasswordError = "* 必要"
+loginPasswordPlaceholder = "密碼"
+loginForgotPasswordLink = "https://minecraft.net/password/forgot/"
+loginForgotPasswordText = "忘記密碼?"
+loginRememberMeText = "記住我?"
+loginButtonText = "登入"
+loginNeedAccountLink = "https://minecraft.net/store/minecraft-java-edition/"
+loginNeedAccountText = "需要新帳號?"
+loginPasswordDisclaimer1 = "我們不會儲存您的密碼，您的密碼將會直接送往 mojang 伺服器那"
+loginPasswordDisclaimer2 = "{appName} 不隸屬於 Mojang AB."
+
+[ejs.loginOptions]
+loginOptionsTitle = "登入選項"
+loginWithMicrosoft = "Microsoft 登入"
+loginWithMojang = "舊版 Mojang 登入"
+cancelButton = "取消"
+
+[ejs.overlay]
+serverSelectHeader = "現有的伺服器"
+serverSelectConfirm = "選擇"
+serverSelectCancel = "取消"
+accountSelectHeader = "選擇帳號"
+accountSelectConfirm = "選擇"
+accountSelectCancel = "取消"
+
+[ejs.settings]
+navHeaderText = "選項"
+navAccount = "帳號"
+navMinecraft = "遊戲"
+navMods = "模組&光影"
+navJava = "Java&記憶體"
+navLauncher = "啟動器設定"
+navAbout = "關於"
+navUpdates = "更新"
+navDone = "完成"
+tabAccountHeaderText = "帳號設定"
+tabAccountHeaderDesc = "管理現有帳號或新增新帳號"
+microsoftAccount = "Microsoft"
+addMicrosoftAccount = "+ 新增 Microsoft 帳號"
+mojangAccount = "Mojang"
+addMojangAccount = "+ 新增 Mojang 帳號"
+minecraftTabHeaderText = "遊戲設定"
+minecraftTabHeaderDesc = "解析度與遊戲分離相關的選項"
+gameResolutionTitle = "遊戲解析度"
+launchFullscreenTitle = "以全螢幕遊玩遊戲"
+autoConnectTitle = "遊戲載入完成時將會自動連接伺服器"
+launchDetachedTitle = "遊戲與啟動器分離"
+launchDetachedDesc = "如果遊戲沒有分離，會關閉啟動器也會關閉遊戲"
+tabModsHeaderText = "模組&光影設定"
+tabModsHeaderDesc = "開啟或關閉模組與光影"
+switchServerButton = "切換"
+requiredMods = "必要的模組"
+optionalMods = "可開關的模組"
+dropinMods = "拖入的模組"
+addMods = "新增模組"
+dropinRefreshNote = "(F5 重新整理)"
+shaderpacks = "光影包"
+shaderpackDesc = "啟用或禁用光影包 請注意，光影包只有在強大的電腦配置下才能流暢運行 您可以在此處添加自定義包"
+selectShaderpack = "選擇光影包"
+tabJavaHeaderText = "Java&記憶體設定"
+tabJavaHeaderDesc = "管理 記憶體與 Java 設定(進階)"
+memoryTitle = "記憶體設定"
+maxRAM = "最大記憶體"
+minRAM = "最小記憶體"
+memoryDesc = "建議的最小記憶體為 6 GB 將最小值和最大值設置為相同的值可以減少滯後"
+memoryTotalTitle = "電腦總額"
+memoryAvailableTitle = "目前可用"
+javaExecutableTitle = "可執行的 Java"
+javaExecSelDialogTitle = "選擇可執行 Java"
+javaExecSelButtonText = "選擇檔案"
+javaExecDesc = "在遊戲啟動前會先檢查是否可執行 Java"
+javaPathDesc = "檔案路徑與檔案名稱ex: <strong>{pathSuffix}</strong>."
+jvmOptsTitle = "增加 JVM 選項"
+jvmOptsDesc = "在執行時提供給 JVM 的選項 <em>-Xms</em> and <em>-Xmx</em> 不需要"
+launcherTabHeaderText = "遊戲資料目錄"
+launcherTabHeaderDesc = "修改模組包安裝位置"
+allowPrereleaseTitle = "Allow Pre-Release Updates."
+allowPrereleaseDesc = "Pre-Releases include new features which may have not been fully tested or integrated.<br>This will always be true if you are using a pre-release version."
+dataDirectoryTitle = "遊戲路徑"
+selectDataDirectory = "選擇遊戲路徑"
+chooseFolder = "選擇資料夾"
+dataDirectoryDesc = "所有遊戲文件和 Java 安裝將存儲在此資料夾中<br>截圖和世界存檔會儲存在相應的伺服器配置實例資料夾中"
+aboutTabHeaderText = "關於"
+aboutTabHeaderDesc = "查看當前版本的信息和發行說明"
+aboutTitle = "{appName}"
+stableRelease = "穩定版本"
+versionText = "版本 "
+sourceGithub = "Source (GitHub)"
+support = "支援"
+devToolsConsole = "除錯控制台"
+releaseNotes = "發行說明"
+changelog = "更新紀錄"
+noReleaseNotes = "沒有發佈說明"
+viewReleaseNotes = "沒有發佈說明"
+launcherUpdatesHeaderText = "啟動器更新"
+launcherUpdatesHeaderDesc = "下載、安裝並檢查登入器的更新"
+checkForUpdates = "檢查更新"
+whatsNew = "最新消息"
+updateReleaseNotes = "更新發行說明"
+
+[ejs.waiting]
+waitingText = "等待 Microsoft 驗證.."
+
+[ejs.welcome]
+continueButton = "繼續"
+
+
+[js.discord]
+waiting = "正在等待連接.."
+state = "伺服器: {shortId}"
+
+[js.index]
+microsoftLoginTitle = "Microsoft 登入"
+microsoftLogoutTitle = "Microsoft 登出"
+
+[js.login]
+login = "登入"
+loggingIn = "登入"
+success = "完成"
+tryAgain = "在試一次"
+
+[js.login.error]
+invalidValue = "* 錯誤"
+requiredValue = "* 需求"
+
+[js.login.error.unknown]
+title = "登入時發生未知錯誤"
+desc = "出現未知錯誤， 詳情請查看除錯控制台。"
+
+[js.landing.launch]
+pleaseWait = "請稍後.."
+failureTitle = "遊戲啟動期間出錯"
+failureText = "出現未知錯誤， 詳情請查看除錯控制台。"
+okay = "Okay"
+
+[js.landing.selectedAccount]
+noAccountSelected = "沒有已選擇的帳號"
+
+[js.landing.selectedServer]
+noSelection = "沒有選擇的伺服器"
+loading = "載入中.."
+
+[js.landing.serverStatus]
+server = "伺服器"
+offline = "離線中"
+players = "玩家"
+
+[js.landing.systemScan]
+checking = "正在檢察系統資訊.."
+noCompatibleJava = "不相容錯誤<br>你的電腦裡沒有發現可用的 JAVA"
+installJavaMessage = "為了遊玩憶蝶夢海伺服器，您需要安裝64位元的Java {major} 。您想要我們幫忙安裝嗎？"
+installJava = "安裝 Java"
+installJavaManually = "我自行手動安裝"
+javaDownloadPrepare = "準備下載 Java 中.."
+javaDownloadFailureTitle = "下載 Java 錯誤"
+javaDownloadFailureText = "詳情請查看除錯控制台。"
+javaRequired = "需要 Java<br>才能啟動"
+javaRequiredMessage = '需要安裝有效的 x64 Java {major} 版本才能啟動'
+javaRequiredDismiss = "我了解"
+javaRequiredCancel = "返回"
+
+[js.landing.downloadJava]
+findJdkFailure = "找不到 OpenJDK 發行版"
+javaDownloadCorruptedError = "下載的JDK檔案Hash錯誤，可能已損壞"
+extractingJava = "提取 Java 中"
+javaInstalled = "已安裝 Java!"
+
+[js.landing.dlAsync]
+loadingServerInfo = "正在載入伺服器資訊.."
+fatalError = "致命錯誤"
+unableToLoadDistributionIndex = "無法載入伺服器索引的內容 請洽詢社群管理員以獲取更多詳細信息"
+pleaseWait = "請稍後.."
+errorDuringLaunchTitle = "啟動時發生錯誤"
+seeConsoleForDetails = "請洽詢社群管理員以獲取更多詳細信息"
+validatingFileIntegrity = "驗證檔案完整性.."
+errorDuringFileVerificationTitle = "文件驗證時發生錯誤"
+downloadingFiles = "下載檔案中.."
+errorDuringFileDownloadTitle = "檔案下載時發生錯誤"
+preparingToLaunch = "準備啟動.."
+launchingGame = "啟動遊戲中.."
+launchWrapperNotDownloaded = "主要檔案下載失敗, 因此，遊戲無法啟動。<br><br>為了解決這個問題，請暫時關閉您的防毒軟體並重新啟動遊戲。<br><br>如果還有問題請洽登入器作者"
+doneEnjoyServer = "完成 好好享受伺服器吧!"
+checkConsoleForDetails = "請洽詢社群管理員以獲取更多詳細信息"
+
+[js.landing.news]
+checking = "檢查公告"
+
+[js.landing.discord]
+loading = "遊戲開啟中.."
+joining = "遊玩憶蝶夢海伺服器中!"
+joined = "遊玩憶蝶夢海伺服器中!"
+
+[js.overlay]
+dismiss = "離開"
+
+[js.settings.fileSelectors]
+executables = "可執行"
+allFiles = "所有檔案"
+
+[js.settings.mstfLogin]
+errorTitle = "發生了一些問題"
+errorMessage = "Microsoft 認證失敗 請再試一次"
+okButton = "OK"
+
+[js.settings.mstfLogout]
+errorTitle = "發生了一些問題"
+errorMessage = "Microsoft 登出失敗 請再試一次"
+okButton = "OK"
+
+[js.settings.authAccountSelect]
+selectButton = "選擇帳號"
+selectedButton = "已選擇帳號 &#10004;"
+
+[js.settings.authAccountLogout]
+lastAccountWarningTitle = "警告<br>這是您的最後一個帳號"
+lastAccountWarningMessage = "為了使用啟動器，您必須至少登入一個帳號 <br>如果您登出了之後您需要重新登入 <br>我們不提供離線遊玩 <br><br>您確定要登出嗎?"
+confirmButton = "我確定"
+cancelButton = "取消"
+
+[js.settings.authAccountPopulate]
+username = "角色名稱"
+uuid = "UUID"
+selectAccount = "選擇帳號"
+selectedAccount = "已選擇的帳號 ✓"
+logout = "登出"
+
+[js.settings.dropinMods]
+removeButton = "移除"
+deleteFailedTitle = "刪除失敗<br>拖入的模組 {fullName}"
+deleteFailedMessage = "請確認該模組沒有正在被使用，請在試一次"
+failedToggleTitle = "切換失敗<br>一個或很多個拖入模組"
+okButton = "好"
+
+[js.settings.serverListing]
+mainServer = "主要伺服器"
+
+[js.settings.java]
+selectedJava = "選擇: Java {version} ({vendor})"
+invalidSelection = "無效的選擇"
+requiresJava = "需求 Java {major} x64."
+availableOptions = ""
+
+[js.settings.about]
+preReleaseTitle = "預發行版"
+stableReleaseTitle = "正式版"
+releaseNotesFailed = "無法載入 版本紀錄"
+
+[js.settings.updates]
+newReleaseTitle = "有新的版本可用"
+newPreReleaseTitle = "有新的預發行可用"
+downloadingButton = "下載中.."
+downloadButton = '從 GitHub 下載<span style="font-size: 10px;color: gray;text-shadow: none !important;">關閉登入器並執行 dmg 以進行更新</span>'
+latestVersionTitle = "您正在執行最新版本"
+checkForUpdatesButton = "檢查更新"
+checkingForUpdatesButton = "正在檢查更新中.."
+
+[js.settings.msftLogin]
+errorTitle = "Microsoft登入失敗"
+errorMessage = "我們無法驗證您的Microsoft帳戶。請再試一次。"
+okButton = "OK"
+
+[js.uibinder.startup]
+fatalErrorTitle = "致命錯誤: 無法載入伺服器索引"
+fatalErrorMessage = "無法連接到我們的伺服器下載啟動器資料 沒有本地資料可供使用 <br><br>登入器資料是一個重要的文件，提供最新的伺服器訊息 如果缺少此文件，登入器將無法使用 請確保您已連接到網際網路並重新啟動啟動器"
+closeButton = "關閉"
+
+[js.uibinder.validateAccount]
+failedMessageTitle = "無法更新登入"
+failedMessage = "我們無法更新 <strong>{account}</strong> 的登入資訊  請選擇另一個帳號或再登入一次該帳號"
+failedMessageSelectAnotherAccount = "我們無法更新 <strong>{account}</strong> 的登入資訊 請登入一次該帳號"
+loginButton = "登入"
+selectAnotherAccountButton = "選擇另一個帳號"
+
+[js.uicore.autoUpdate]
+checkingForUpdateButton = "正在檢查更新.."
+installNowButton = "馬上更新"
+checkForUpdatesButton = "檢查更新"
+
+[js.auth.microsoft.error]
+noProfileTitle = "登入過程中出現錯誤:<br>個人資料未設定"
+noProfileDesc = "您的Microsoft帳戶尚未設置Minecraft個人資料, 如果您最近剛購買了遊戲或是透過Xbox Game Pass兌換, 您需要在 <a href=\"https://minecraft.net/\">Minecraft.net</a>上設置您的個人資料 <br><br>如果你還沒有購買遊戲, 你也可以在 <a href=\"https://minecraft.net/\">Minecraft.net</a>上進行購買"
+noXboxAccountTitle = "登入過程中出現錯誤:<br>沒有Xbox帳戶"
+noXboxAccountDesc = "您的Microsoft帳戶並未與任何Xbox帳戶關聯"
+xblBannedTitle = "登入過程中出現錯誤:<br>Xbox Live 無法使用"
+xblBannedDesc = "您的 Microsoft 帳戶來自一個 Xbox Live 不可用或被禁止的國家。"
+under18Title = "登入過程中出現錯誤:<br>家長批准需要"
+under18Desc = "18 歲以下使用者的帳戶必須由成年人加入家庭。"
+unknownTitle = "登入過程中出現未知錯誤"
+unknownDesc = "發生了未知錯誤。請查看控制台以獲取詳細資訊。"
+
+[js.auth.mojang.error]
+methodNotAllowedTitle = "內部錯誤：<br>方法不被允許"
+methodNotAllowedDesc = "方法不被允許。請報告此錯誤。"
+notFoundTitle = "內部錯誤：<br>找不到"
+notFoundDesc = "找不到驗證端點。請回報此問題。"
+accountMigratedTitle = "登入過程中出現錯誤:<br>帳戶已遷移"
+accountMigratedDesc = "您嘗試使用已遷移的帳戶登錄。請再次嘗試，將電子郵件作為用戶名。"
+invalidCredentialsTitle = "登入過程中出現錯誤:<br>請提供有效的憑證。"
+invalidCredentialsDesc = "您輸入的電子郵件或密碼不正確。請再試一次。"
+tooManyAttemptsTitle = "登入過程中出現錯誤:<br>嘗試次數過多"
+tooManyAttemptsDesc = "最近這個帳戶嘗試登入次數過多。請稍後再試。"
+invalidTokenTitle = "登入過程中出現錯誤:<br>Invalid Token"
+invalidTokenDesc = "所提供的存取權杖無效。"
+tokenHasProfileTitle = "登入過程中出現錯誤:<br>Token Has Profile"
+tokenHasProfileDesc = "存取權杖已經有一個配置檔指定。選擇配置檔尚未實作。"
+credentialsMissingTitle = "登入過程中出現錯誤:<br>證書遺失"
+credentialsMissingDesc = "使用者名稱/密碼未提交或密碼少於3個字元。"
+invalidSaltVersionTitle = "登入過程中出現錯誤:<br>無效的版本"
+invalidSaltVersionDesc = "無效的版本"
+unsupportedMediaTypeTitle = "內部錯誤：<br>不支援的媒體類型"
+unsupportedMediaTypeDesc = "不支援的媒體類型。請回報此錯誤。"
+accountGoneTitle = "登入過程中出現錯誤:<br>帳戶已遷移"
+accountGoneDesc = "帳戶已遷移至 Microsoft 帳戶。請使用 Microsoft 登入。"
+unreachableTitle = "登入過程中出現錯誤:<br>無法到達"
+unreachableDesc = "無法連接到驗證伺服器。請確保它們在線並且您已連接到網路"
+gameNotPurchasedTitle = "登入過程中出現錯誤:<br>遊戲未購買"
+gameNotPurchasedDesc = "您嘗試登錄的帳戶尚未購買《Minecraft》的副本。您可以在<a href=\"https://minecraft.net/\">Minecraft.net</a>上購買一份。"
+unknownErrorTitle = "Unknown 登入過程中出現錯誤"
+unknownErrorDesc = "An unknown error has occurred. Please see the console for details."
