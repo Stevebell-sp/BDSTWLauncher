@@ -1,8 +1,8 @@
-appId: 'helioslauncher'
-productName: 'Helios Launcher'
+appId: 'bdstwlauncher'
+productName: 'BDSTW Launcher'
 artifactName: '${productName}-setup-${version}.${ext}'
 
-copyright: 'Copyright © 2018-2024 Daniel Scalzi'
+copyright: 'Copyright © 2021-2024 憶蝶夢海模組伺服器'
 
 asar: true
 compression: 'maximum'
@@ -21,10 +21,10 @@ win:
 
 # Windows Installer Configuration
 nsis:
-  oneClick: false
+  oneClick: true
   perMachine: false
   allowElevation: true
-  allowToChangeInstallationDirectory: true
+  allowToChangeInstallationDirectory: false
 
 # macOS Configuration
 mac:
@@ -39,10 +39,10 @@ mac:
 # Linux Configuration
 linux: 
   target: 'AppImage'
-  maintainer: 'Daniel Scalzi'
-  vendor: 'Daniel Scalzi'
-  synopsis: 'Modded Minecraft Launcher'
-  description: 'Custom launcher which allows users to join modded servers. All mods, configurations, and updates are handled automatically.'
+  maintainer: '憶蝶夢海模組伺服器'
+  vendor: '憶蝶夢海模組伺服器'
+  synopsis: '模組創世神啟動器'
+  description: '模組創世神啟動器，允許使用者加入模組化的伺服器，所有的模組、配置都會自動更新，只要登入即可遊玩'
   category: 'Game'
 
 
