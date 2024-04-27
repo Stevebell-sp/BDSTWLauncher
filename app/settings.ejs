@@ -132,10 +132,10 @@
                     </div>
                 </div>
             </div>
-            <div id="settingsModsContainer"> <!--必須模組--> <!-- hidden-->
-                <div id="settingsReqModsContainer">
-                    <div class="settingsModsHeader"><%- lang('settings.requiredMods') %></div>
-                    <div id="settingsReqModsContent">
+            <div id="settingsModsContainer"> <!--必須模組-->
+                <div id="settingsReqModsContainer" hidden>
+                    <div class="settingsModsHeader" hidden><%- lang('settings.requiredMods') %></div>
+                    <div id="settingsReqModsContent" hidden>
 
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                         
                     </div>
                 </div>
-                <div id="settingsDropinModsContainer"> <!--自行加裝模組--> <!-- hidden-->
+                <div id="settingsDropinModsContainer"> <!--自行加裝模組--> 
                     <div class="settingsModsHeader" hidden><%- lang('settings.dropinMods') %></div>
                     <button id="settingsDropinFileSystemButton" hidden><%- lang('settings.addMods') %> <span id="settingsDropinRefreshNote"><%- lang('settings.dropinRefreshNote') %></span></button>
                     <div id="settingsDropinModsContent" hidden>
