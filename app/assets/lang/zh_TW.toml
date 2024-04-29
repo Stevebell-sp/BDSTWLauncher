@@ -173,7 +173,7 @@ players = "玩家"
 [js.landing.systemScan]
 checking = "正在檢察系統資訊.."
 noCompatibleJava = "不相容錯誤<br>你的電腦裡沒有發現可用的 JAVA"
-installJavaMessage = "為了遊玩憶蝶夢海伺服器，您需要安裝64位元的Java {major} 。您想要我們幫忙安裝嗎？"
+installJavaMessage = "為了遊玩伺服器，您需要安裝64位元的Java {major} 。您想要我們幫忙安裝嗎？"
 installJava = "安裝 Java"
 installJavaManually = "我自行手動安裝"
 javaDownloadPrepare = "準備下載 Java 中.."
@@ -212,8 +212,8 @@ checking = "檢查公告"
 
 [js.landing.discord]
 loading = "遊戲開啟中.."
-joining = "遊玩憶蝶夢海伺服器中!"
-joined = "遊玩憶蝶夢海伺服器中!"
+joining = "正在加入伺服器!"
+joined = "遊玩伺服器中!"
 
 [js.overlay]
 dismiss = "離開"
@@ -238,7 +238,7 @@ selectedButton = "已選擇帳號 &#10004;"
 
 [js.settings.authAccountLogout]
 lastAccountWarningTitle = "警告<br>這是您的最後一個帳號"
-lastAccountWarningMessage = "為了使用啟動器，您必須至少登入一個帳號 <br>如果您登出了之後您需要重新登入 <br>我們不提供離線遊玩 <br><br>您確定要登出嗎?"
+lastAccountWarningMessage = "為了使用啟動器，您必須至少登入一個帳號 <br>如果您登出了之後您需要重新登入 <br>我們不提供盜版遊玩 <br><br>您確定要登出嗎?"
 confirmButton = "我確定"
 cancelButton = "取消"
 
