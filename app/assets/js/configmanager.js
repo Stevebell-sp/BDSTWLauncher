@@ -521,7 +521,6 @@ function defaultJavaConfig8(ram) {
         maxRAM: resolveSelectedRAM(ram),
         executable: null,
         jvmOptions: [
-            '-javaagent:JarClient.jar',
             '-XX:+AggressiveOpts',
             '-XX:+UseCompressedOops',
             '-XX:+UseCMSCompactAtFullCollection',
@@ -541,8 +540,7 @@ function defaultJavaConfig17(ram) {
         minRAM: resolveSelectedRAM(ram),
         maxRAM: resolveSelectedRAM(ram),
         executable: null,
-        jvmOptions: [
-            '-javaagent:JarClient.jar',
+        jvmOptions: [            
             '-XX:+UnlockExperimentalVMOptions',
             '-XX:+UseG1GC',
             '-XX:G1NewSizePercent=20',
