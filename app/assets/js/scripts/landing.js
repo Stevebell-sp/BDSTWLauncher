@@ -102,6 +102,46 @@ function setLaunchEnabled(val){
 document.getElementById('launch_button').addEventListener('click', async e => {
     loggerLanding.info('Launching game..')
     try {
+        const uuid = ConfigManager.getSelectedAccount().uuid
+        var response = await fetch(`http://modpack.bdstw.org/api/checkuserinwhitelist/${uuid}`)
+        var exists = await response.json();
+        if(exists.exists){
+            console.log(`玩家${uuid}在白名單中`)
+        }else{
+            console.log(`玩家${uuid}不在白名單中`)
+            setOverlayContent("你不在白名單中!","請先去 Ts community Discord 申請白名單","前往Discord")
+            setOverlayHandler(() => {
+                window.open("https://discord.gg/ts-mods-community")
+                toggleOverlay(false)
+            })
+            setDismissHandler(() => {
+                toggleOverlay(false)
+            })
+            toggleOverlay(true, true)
+            return;
+        }
+
+
+
+        // response = await fetch(`https://status.bdstw.org/api/badge/5/status`)
+        // const htmlText = await response.text();
+        // const parser = new DOMParser();
+        // const doc = parser.parseFromString(htmlText, 'text/html');
+        // const title = doc.querySelector('title').textContent;
+        // if(title!="Status: Up"){
+        //     setOverlayContent("伺服器目前關閉中","請稍後再試","前往Discord")
+        //     setOverlayHandler(() => {
+        //         window.open("https://discord.gg/ts-mods-community")
+        //         toggleOverlay(false)
+        //     })
+        //     setDismissHandler(() => {
+        //         toggleOverlay(false)
+        //     })
+        //     toggleOverlay(true, true)
+        //     return;
+        // }
+
+        //=================
         const server = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
         const jExe = ConfigManager.getJavaExecutable(ConfigManager.getSelectedServer())
         if(jExe == null){

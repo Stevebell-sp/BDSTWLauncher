@@ -12,7 +12,7 @@ mediaDiscordURL = "https://discord.gg/mcjtJz9gUH"
 
 [ejs.settings]
 sourceGithubLink = "https://bdstw.org/"
-supportLink = "https://bdstw.org/support/tickets"
+supportLink = "https://discord.gg/ts-mods-community"
 
 [ejs.welcome]
 welcomeHeader = "歡迎使用 憶蝶夢海 模組啟動器"
