@@ -103,8 +103,8 @@ document.getElementById('launch_button').addEventListener('click', async e => {
     loggerLanding.info('Launching game..')
     try {
         const uuid = ConfigManager.getSelectedAccount().uuid
-        var response = await fetch(`http://modpack.bdstw.org/api/checkuserinwhitelist/${uuid}`)
-        var exists = await response.json();
+        let response = await fetch(`http://modpack.bdstw.org/api/checkuserinwhitelist/${uuid}`)
+        let exists = await response.json();
         if(exists.exists){
             console.log(`玩家${uuid}在白名單中`)
         }else{
