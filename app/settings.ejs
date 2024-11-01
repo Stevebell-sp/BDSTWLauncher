@@ -133,13 +133,20 @@
                 </div>
             </div>
             <div id="settingsModsContainer">
-                <div id="settingsReqModsContainer">
-                    <div class="settingsModsHeader"><%- lang('settings.requiredMods') %></div>
-                    <div id="settingsReqModsContent">
+                <div id="settingsShadersContainer"> <!--光影--> 
+                    <div class="settingsModsHeader"><%- lang('settings.shaderpacks') %></div>
+                    <div id="settingsShaderpackDesc"><%- lang('settings.shaderpackDesc') %></div>
+                    <div id="settingsShaderpackWrapper">
+                        <button id="settingsShaderpackButton"> + </button>
+                        <div class="settingsSelectContainer">
+                            <div class="settingsSelectSelected" id="settingsShadersSelected"><%- lang('settings.selectShaderpack') %></div>
+                            <div class="settingsSelectOptions" id="settingsShadersOptions">
 
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div id="settingsOptModsContainer">
+                <div id="settingsOptModsContainer"> <!--可開關模組--> 
                     <div class="settingsModsHeader"><%- lang('settings.optionalMods') %></div>
                     <div id="settingsOptModsContent">
                         
@@ -152,17 +159,10 @@
                         
                     </div>
                 </div>
-                <div id="settingsShadersContainer">
-                    <div class="settingsModsHeader"><%- lang('settings.shaderpacks') %></div>
-                    <div id="settingsShaderpackDesc"><%- lang('settings.shaderpackDesc') %></div>
-                    <div id="settingsShaderpackWrapper">
-                        <button id="settingsShaderpackButton"> + </button>
-                        <div class="settingsSelectContainer">
-                            <div class="settingsSelectSelected" id="settingsShadersSelected"><%- lang('settings.selectShaderpack') %></div>
-                            <div class="settingsSelectOptions" id="settingsShadersOptions" hidden>
+                <div id="settingsReqModsContainer"><!--必要模組--> 
+                    <div class="settingsModsHeader"><%- lang('settings.requiredMods') %></div>
+                    <div id="settingsReqModsContent">
 
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -347,7 +347,7 @@
                     </div>
                 </div>
                 <div class="settingsChangelogActions">
-                    <a class="settingsChangelogButton settingsAboutButton" href="#" hidden><%- lang('settings.viewReleaseNotes') %></a>
+                    <a class="settingsChangelogButton settingsAboutButton" href="#"><%- lang('settings.viewReleaseNotes') %></a>
                 </div>
             </div>
         </div>

@@ -100,8 +100,48 @@ function setLaunchEnabled(val){
 
 // Bind launch button
 document.getElementById('launch_button').addEventListener('click', async e => {
-    loggerLanding.info('Launching game..')
+    loggerLanding.info('啟動遊戲..')
     try {
+        const uuid = ConfigManager.getSelectedAccount().uuid
+        let response = await fetch(`https://launcher.bdstw.org/api/checkuserinwhitelist/${uuid}`)
+        let exists = await response.json();
+        if(exists.exists){
+            console.log(`玩家${uuid}在白名單中`)
+        }else{
+            console.log(`玩家${uuid}不在白名單中`)
+            setOverlayContent("你不在白名單中!","請先去 Ts community Discord 申請白名單","前往Discord")
+            setOverlayHandler(() => {
+                window.open("https://discord.gg/ts-mods-community")
+                toggleOverlay(false)
+            })
+            setDismissHandler(() => {
+                toggleOverlay(false)
+            })
+            toggleOverlay(true, true)
+            return;
+        }
+
+
+
+        // response = await fetch(`https://status.bdstw.org/api/badge/5/status`)
+        // const htmlText = await response.text();
+        // const parser = new DOMParser();
+        // const doc = parser.parseFromString(htmlText, 'text/html');
+        // const title = doc.querySelector('title').textContent;
+        // if(title!="Status: Up"){
+        //     setOverlayContent("伺服器目前關閉中","請稍後再試","前往Discord")
+        //     setOverlayHandler(() => {
+        //         window.open("https://discord.gg/ts-mods-community")
+        //         toggleOverlay(false)
+        //     })
+        //     setDismissHandler(() => {
+        //         toggleOverlay(false)
+        //     })
+        //     toggleOverlay(true, true)
+        //     return;
+        // }
+
+        //=================
         const server = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
         const jExe = ConfigManager.getJavaExecutable(ConfigManager.getSelectedServer())
         if(jExe == null){
@@ -131,14 +171,6 @@ document.getElementById('launch_button').addEventListener('click', async e => {
 document.getElementById('settingsMediaButton').onclick = async e => {
     await prepareSettings()
     switchView(getCurrentView(), VIEWS.settings)
-}
-
-// Bind avatar overlay button.
-document.getElementById('avatarOverlay').onclick = async e => {
-    await prepareSettings()
-    switchView(getCurrentView(), VIEWS.settings, 500, 500, () => {
-        settingsNavItemListener(document.getElementById('settingsNavAccount'), false)
-    })
 }
 
 // Bind selected account
@@ -174,6 +206,12 @@ server_selection_button.innerHTML = '&#8226; ' + Lang.queryJS('landing.selectedS
 server_selection_button.onclick = async e => {
     e.target.blur()
     await toggleServerSelection(true)
+}
+
+// Bind avatar overlay button.
+document.getElementById('avatarOverlay').onclick = async e => {
+    e.target.blur()
+    await toggleAccountSelection(true, true)
 }
 
 // Update Mojang Status Color
