@@ -21,7 +21,7 @@ win:
 
 # Windows Installer Configuration
 nsis:
-  oneClick: false
+  oneClick: true
   perMachine: false
   allowElevation: true
   allowToChangeInstallationDirectory: false
