@@ -1,7 +1,7 @@
 # Custom Language File for Launcher Customizer
 
 [ejs.app]
-title = "BDSTW Launcher X TS Community"
+title = "BDSTW Launcher"
 
 [ejs.landing]
 mediaGitHubURL = "https://bdstw.org/"
@@ -12,7 +12,7 @@ mediaDiscordURL = "https://discord.gg/mcjtJz9gUH"
 
 [ejs.settings]
 sourceGithubLink = "https://bdstw.org/"
-supportLink = "https://discord.gg/ts-mods-community"
+supportLink = "https://discord.gg/mcjtJz9gUH"
 
 [ejs.welcome]
 welcomeHeader = "歡迎使用 憶蝶夢海 模組啟動器"

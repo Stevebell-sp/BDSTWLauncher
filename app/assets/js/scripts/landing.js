@@ -102,24 +102,24 @@ function setLaunchEnabled(val){
 document.getElementById('launch_button').addEventListener('click', async e => {
     loggerLanding.info('啟動遊戲..')
     try {
-        const uuid = ConfigManager.getSelectedAccount().uuid
-        let response = await fetch(`https://launcher.bdstw.org/api/checkuserinwhitelist/${uuid}`)
-        let exists = await response.json();
-        if(exists.exists){
-            console.log(`玩家${uuid}在白名單中`)
-        }else{
-            console.log(`玩家${uuid}不在白名單中`)
-            setOverlayContent("你不在白名單中!","請先去 Ts community Discord 申請白名單","前往Discord")
-            setOverlayHandler(() => {
-                window.open("https://discord.gg/ts-mods-community")
-                toggleOverlay(false)
-            })
-            setDismissHandler(() => {
-                toggleOverlay(false)
-            })
-            toggleOverlay(true, true)
-            return;
-        }
+        // const uuid = ConfigManager.getSelectedAccount().uuid
+        // let response = await fetch(`https://launcher.bdstw.org/api/checkuserinwhitelist/${uuid}`)
+        // let exists = await response.json();
+        // if(exists.exists){
+            // console.log(`玩家${uuid}在白名單中`)
+        // }else{
+            // console.log(`玩家${uuid}不在白名單中`)
+            // setOverlayContent("你不在白名單中!","請先去 Ts community Discord 申請白名單","前往Discord")
+            // setOverlayHandler(() => {
+                // window.open("https://discord.gg/ts-mods-community")
+                // toggleOverlay(false)
+            // })
+            // setDismissHandler(() => {
+                // toggleOverlay(false)
+            // })
+            // toggleOverlay(true, true)
+            // return;
+        // }
 
 
 
