@@ -98,112 +98,137 @@ function setLaunchEnabled(val){
     document.getElementById('launch_button').disabled = !val
 }
 
-// Whitelist check function
-async function checkWhitelistStatus(authUser) {
+// Global state for whitelist status
+let whitelistStatusCode = -1; // -1: unchecked, 0: pending, 1: approved, 2: rejected, etc.
+
+// New function to check status and update UI
+async function updateWhitelistStatusAndButton(authUser) {
+    const launchButton = document.getElementById('launch_button');
+
+    // Reset state while checking
+    setLaunchEnabled(false);
+    launchButton.innerHTML = '驗證中...';
+
     if (authUser?.uuid == null) {
-        setOverlayContent('未選擇帳號', '請先登入一個帳號再啟動遊戲。', '確定')
-        setOverlayHandler(() => toggleOverlay(false))
-        toggleOverlay(true)
-        return false
+        launchButton.innerHTML = '請先登入';
+        whitelistStatusCode = -1;
+        setLaunchEnabled(false); // Ensure button is disabled
+        return;
     }
 
-    const uuid = authUser.uuid
-    const username = authUser.displayName
+    const uuid = authUser.uuid;
     
-    // TODO: Make these URLs configurable.
-    const API_URL_BASE = 'http://localhost:7071/api/v1'
-    const DASHBOARD_URL_BASE = 'http://localhost:3000'
+    // TODO: Make this URL configurable
+    const API_URL_BASE = 'http://localhost:7071'; // 使用者指定的埠
 
     try {
-        const response = await fetch(`${API_URL_BASE}/whitelist/status/${uuid}`)
-
-        let status
+        const response = await fetch(`${API_URL_BASE}/api/v1/whitelist/status/${uuid}`);
+        
         if (response.status === 404) {
-            status = 2 // Treat not found as rejected for application purposes.
+            whitelistStatusCode = 4; // Using 4 for "Not Applied"
         } else if (response.ok) {
-            const data = await response.json()
-            status = data.status
+            const data = await response.json();
+            whitelistStatusCode = data.status;
         } else {
-            throw new Error(`API server responded with ${response.status}`)
+            throw new Error(`API server responded with ${response.status}`);
         }
 
-        switch (status) {
-            case 1: // 1: 有效
-                return true
-            case 0: // 0: 審核中
-                setOverlayContent('白名單審核中', '您的申請正在等待管理員審核，請耐心等候。', '確定')
-                setOverlayHandler(() => toggleOverlay(false))
-                setDismissHandler(() => toggleOverlay(false))
-                toggleOverlay(true, true)
-                return false
-            case 2: // 2: 審核不通過
-            case 3: // 3: 通過後被取消
-            default: // Includes 404 not found cases
-                const applyUrl = new URL(`${DASHBOARD_URL_BASE}/whitelist/apply`)
-                applyUrl.searchParams.append('uuid', uuid)
-                applyUrl.searchParams.append('username', username)
-
-                setOverlayContent('需要白名單', '您必須先申請白名單才能遊玩。', '前往申請', '取消')
-                setOverlayHandler(() => {
-                    remote.shell.openExternal(applyUrl.toString())
-                    toggleOverlay(false)
-                })
-                setDismissHandler(() => toggleOverlay(false))
-                toggleOverlay(true, true)
-                return false
+        // Update button based on status
+        switch (whitelistStatusCode) {
+            case 1: // 有效
+                launchButton.innerHTML = '啟動遊戲';
+                break;
+            case 0: // 審核中
+                launchButton.innerHTML = '審核中...';
+                break; // Button remains disabled
+            case 2: // 審核不通過
+            case 3: // 通過後被取消
+            case 4: // 未申請
+            default:
+                launchButton.innerHTML = '點擊申請';
+                break;
         }
 
     } catch (err) {
-        loggerLanding.error('Error checking whitelist status:', err)
-        setOverlayContent('連線錯誤', '無法驗證您的白名單狀態，請檢查您的網路連線或稍後再試。', '確定')
-        setOverlayHandler(() => toggleOverlay(false))
-        toggleOverlay(true)
-        return false
+        loggerLanding.error('Error checking whitelist status:', err);
+        launchButton.innerHTML = '驗證失敗';
+        whitelistStatusCode = -2; // Error state
+    } finally {
+        // Final check for enabling the button
+        const serv = (await DistroAPI.getDistribution())?.getServerById(ConfigManager.getSelectedServer());
+        const isServerSelected = serv != null;
+        
+        // Enable button if server is selected AND status is either approved or needs application.
+        // Disable if pending or error.
+        if (isServerSelected && (whitelistStatusCode === 1 || whitelistStatusCode >= 2)) {
+            setLaunchEnabled(true);
+        } else {
+            setLaunchEnabled(false);
+        }
     }
 }
 
 // Bind launch button
 document.getElementById('launch_button').addEventListener('click', async e => {
-    loggerLanding.info('啟動遊戲..')
-    try {
-        
-        // First, check whitelist status.
-        const isWhitelisted = await checkWhitelistStatus(ConfigManager.getSelectedAccount())
+    loggerLanding.info('Launch button clicked, status code is: ' + whitelistStatusCode);
 
-        // If not whitelisted, stop the launch process.
-        if (!isWhitelisted) {
-            loggerLanding.info('Whitelist check failed, aborting launch.')
-            return
-        }
-
-        // Whitelist check passed, proceed with launch.
-        loggerLanding.info('Whitelist check passed, proceeding with launch.')
-
-        //=================
-        const server = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
-        const jExe = ConfigManager.getJavaExecutable(ConfigManager.getSelectedServer())
-        if(jExe == null){
-            await asyncSystemScan(server.effectiveJavaOptions)
-        } else {
-
-            setLaunchDetails(Lang.queryJS('landing.launch.pleaseWait'))
-            toggleLaunchArea(true)
-            setLaunchPercentage(0, 100)
-
-            const details = await validateSelectedJvm(ensureJavaDirIsRoot(jExe), server.effectiveJavaOptions.supported)
-            if(details != null){
-                loggerLanding.info('Jvm Details', details)
-                await dlAsync()
-
-            } else {
-                await asyncSystemScan(server.effectiveJavaOptions)
+    // Action depends on the whitelist status
+    switch (whitelistStatusCode) {
+        case 1: // Whitelisted: Launch the game
+            loggerLanding.info('Whitelist status is "Approved". Proceeding with launch...');
+            try {
+                const server = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer());
+                const jExe = ConfigManager.getJavaExecutable(ConfigManager.getSelectedServer());
+                if (jExe == null) {
+                    await asyncSystemScan(server.effectiveJavaOptions);
+                } else {
+                    setLaunchDetails(Lang.queryJS('landing.launch.pleaseWait'));
+                    toggleLaunchArea(true);
+                    setLaunchPercentage(0, 100);
+                    const details = await validateSelectedJvm(ensureJavaDirIsRoot(jExe), server.effectiveJavaOptions.supported);
+                    if (details != null) {
+                        loggerLanding.info('Jvm Details', details);
+                        await dlAsync();
+                    } else {
+                        await asyncSystemScan(server.effectiveJavaOptions);
+                    }
+                }
+            } catch (err) {
+                loggerLanding.error('Unhandled error during launch process.', err);
+                showLaunchFailure(Lang.queryJS('landing.launch.failureTitle'), Lang.queryJS('landing.launch.failureText'));
             }
-        }
-    } catch(err) {
-        loggerLanding.error('Unhandled error in during launch process.', err)
-        showLaunchFailure(Lang.queryJS('landing.launch.failureTitle'), Lang.queryJS('landing.launch.failureText'))
+            break;
+
+        case 2: // Rejected
+        case 3: // Revoked
+        case 4: // Not Applied
+        default: // Also handles error cases where button might be clickable
+            loggerLanding.info('Whitelist status requires application. Opening application page...');
+            const authUser = ConfigManager.getSelectedAccount();
+            if (authUser?.uuid) {
+                // [!!!] 核心修正: 跳轉到後端 API 入口點，而不是前端頁面
+                // TODO: Make this URL configurable
+                const API_URL_BASE = 'http://localhost:7071'; // 使用者指定的埠
+                const startUrl = new URL(`${API_URL_BASE}/api/v1/web/auth/launcher-start`);
+                startUrl.searchParams.append('uuid', authUser.uuid);
+                startUrl.searchParams.append('username', authUser.displayName);
+                remote.shell.openExternal(startUrl.toString());
+            } else {
+                loggerLanding.error('Cannot open application page, no user is selected.');
+                setOverlayContent('錯誤', '未選擇帳號，無法開啟申請頁面。', '確定');
+                setOverlayHandler(() => toggleOverlay(false));
+                toggleOverlay(true);
+            }
+            break;
+
+        case 0: // Pending
+        case -1: // Unchecked
+        case -2: // Error
+            // Button should be disabled, do nothing if clicked.
+            loggerLanding.warn('Launch button clicked in a disabled state, status: ' + whitelistStatusCode);
+            break;
     }
-})
+});
 
 // Bind settings button
 document.getElementById('settingsMediaButton').onclick = async e => {
@@ -212,32 +237,36 @@ document.getElementById('settingsMediaButton').onclick = async e => {
 }
 
 // Bind selected account
-function updateSelectedAccount(authUser){
-    let username = Lang.queryJS('landing.selectedAccount.noAccountSelected')
+async function updateSelectedAccount(authUser){
+    let username = Lang.queryJS('landing.selectedAccount.noAccountSelected');
     if(authUser != null){
         if(authUser.displayName != null){
-            username = authUser.displayName
+            username = authUser.displayName;
         }
         if(authUser.uuid != null){
-            document.getElementById('avatarContainer').style.backgroundImage = `url('https://mc-heads.net/body/${authUser.uuid}/right')`
+            document.getElementById('avatarContainer').style.backgroundImage = `url('https://mc-heads.net/body/${authUser.uuid}/right')`;
         }
     }
-    user_text.innerHTML = username
+    user_text.innerHTML = username;
+    
+    // Perform whitelist check when account is updated.
+    await updateWhitelistStatusAndButton(authUser);
 }
-updateSelectedAccount(ConfigManager.getSelectedAccount())
+updateSelectedAccount(ConfigManager.getSelectedAccount());
 
 // Bind selected server
 function updateSelectedServer(serv){
     if(getCurrentView() === VIEWS.settings){
-        fullSettingsSave()
+        fullSettingsSave();
     }
-    ConfigManager.setSelectedServer(serv != null ? serv.rawServer.id : null)
-    ConfigManager.save()
-    server_selection_button.innerHTML = '&#8226; ' + (serv != null ? serv.rawServer.name : Lang.queryJS('landing.noSelection'))
+    ConfigManager.setSelectedServer(serv != null ? serv.rawServer.id : null);
+    ConfigManager.save();
+    server_selection_button.innerHTML = '&#8226; ' + (serv != null ? serv.rawServer.name : Lang.queryJS('landing.noSelection'));
     if(getCurrentView() === VIEWS.settings){
-        animateSettingsTabRefresh()
+        animateSettingsTabRefresh();
     }
-    setLaunchEnabled(serv != null)
+    // Re-run the status check to update the button state correctly.
+    updateWhitelistStatusAndButton(ConfigManager.getSelectedAccount());
 }
 // Real text is set in uibinder.js on distributionIndexDone.
 server_selection_button.innerHTML = '&#8226; ' + Lang.queryJS('landing.selectedServer.loading')
