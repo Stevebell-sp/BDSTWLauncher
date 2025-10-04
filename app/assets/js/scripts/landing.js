@@ -98,48 +98,86 @@ function setLaunchEnabled(val){
     document.getElementById('launch_button').disabled = !val
 }
 
+// Whitelist check function
+async function checkWhitelistStatus(authUser) {
+    if (authUser?.uuid == null) {
+        setOverlayContent('未選擇帳號', '請先登入一個帳號再啟動遊戲。', '確定')
+        setOverlayHandler(() => toggleOverlay(false))
+        toggleOverlay(true)
+        return false
+    }
+
+    const uuid = authUser.uuid
+    const username = authUser.displayName
+    
+    // TODO: Make these URLs configurable.
+    const API_URL_BASE = 'http://localhost:7071/api/v1'
+    const DASHBOARD_URL_BASE = 'http://localhost:3000'
+
+    try {
+        const response = await fetch(`${API_URL_BASE}/whitelist/status/${uuid}`)
+
+        let status
+        if (response.status === 404) {
+            status = 2 // Treat not found as rejected for application purposes.
+        } else if (response.ok) {
+            const data = await response.json()
+            status = data.status
+        } else {
+            throw new Error(`API server responded with ${response.status}`)
+        }
+
+        switch (status) {
+            case 1: // 1: 有效
+                return true
+            case 0: // 0: 審核中
+                setOverlayContent('白名單審核中', '您的申請正在等待管理員審核，請耐心等候。', '確定')
+                setOverlayHandler(() => toggleOverlay(false))
+                setDismissHandler(() => toggleOverlay(false))
+                toggleOverlay(true, true)
+                return false
+            case 2: // 2: 審核不通過
+            case 3: // 3: 通過後被取消
+            default: // Includes 404 not found cases
+                const applyUrl = new URL(`${DASHBOARD_URL_BASE}/whitelist/apply`)
+                applyUrl.searchParams.append('uuid', uuid)
+                applyUrl.searchParams.append('username', username)
+
+                setOverlayContent('需要白名單', '您必須先申請白名單才能遊玩。', '前往申請', '取消')
+                setOverlayHandler(() => {
+                    remote.shell.openExternal(applyUrl.toString())
+                    toggleOverlay(false)
+                })
+                setDismissHandler(() => toggleOverlay(false))
+                toggleOverlay(true, true)
+                return false
+        }
+
+    } catch (err) {
+        loggerLanding.error('Error checking whitelist status:', err)
+        setOverlayContent('連線錯誤', '無法驗證您的白名單狀態，請檢查您的網路連線或稍後再試。', '確定')
+        setOverlayHandler(() => toggleOverlay(false))
+        toggleOverlay(true)
+        return false
+    }
+}
+
 // Bind launch button
 document.getElementById('launch_button').addEventListener('click', async e => {
     loggerLanding.info('啟動遊戲..')
     try {
-        // const uuid = ConfigManager.getSelectedAccount().uuid
-        // let response = await fetch(`https://launcher.bdstw.org/api/checkuserinwhitelist/${uuid}`)
-        // let exists = await response.json();
-        // if(exists.exists){
-            // console.log(`玩家${uuid}在白名單中`)
-        // }else{
-            // console.log(`玩家${uuid}不在白名單中`)
-            // setOverlayContent("你不在白名單中!","請先去 Ts community Discord 申請白名單","前往Discord")
-            // setOverlayHandler(() => {
-                // window.open("https://discord.gg/ts-mods-community")
-                // toggleOverlay(false)
-            // })
-            // setDismissHandler(() => {
-                // toggleOverlay(false)
-            // })
-            // toggleOverlay(true, true)
-            // return;
-        // }
+        
+        // First, check whitelist status.
+        const isWhitelisted = await checkWhitelistStatus(ConfigManager.getSelectedAccount())
 
+        // If not whitelisted, stop the launch process.
+        if (!isWhitelisted) {
+            loggerLanding.info('Whitelist check failed, aborting launch.')
+            return
+        }
 
-
-        // response = await fetch(`https://status.bdstw.org/api/badge/5/status`)
-        // const htmlText = await response.text();
-        // const parser = new DOMParser();
-        // const doc = parser.parseFromString(htmlText, 'text/html');
-        // const title = doc.querySelector('title').textContent;
-        // if(title!="Status: Up"){
-        //     setOverlayContent("伺服器目前關閉中","請稍後再試","前往Discord")
-        //     setOverlayHandler(() => {
-        //         window.open("https://discord.gg/ts-mods-community")
-        //         toggleOverlay(false)
-        //     })
-        //     setDismissHandler(() => {
-        //         toggleOverlay(false)
-        //     })
-        //     toggleOverlay(true, true)
-        //     return;
-        // }
+        // Whitelist check passed, proceed with launch.
+        loggerLanding.info('Whitelist check passed, proceeding with launch.')
 
         //=================
         const server = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
