@@ -71,15 +71,19 @@ async function showMainUI(data){
             document.getElementById('frameBar').style.backgroundColor = 'rgba(0, 0, 0, 0.5)'
             // document.body.style.backgroundImage = `url('assets/images/backgrounds/${document.body.getAttribute('bkid')}.jpg')`
         
-            // --- NEW VIDEO BACKGROUND LOGIC ---
-            const video = document.getElementById('backgroundVideo');
-            if (video) {
-                const videoIndex = Math.floor(Math.random() * 6) + 1;
-                video.src = `https://video.bdstw.org/${videoIndex}.mp4`;
-                video.load();
-            }
-            // --- END ---
-        
+                // --- NEW VIDEO BACKGROUND LOGIC ---
+                const video = document.getElementById('backgroundVideo');
+                if (video) {
+                    const videoIndex = Math.floor(Math.random() * 6) + 1;
+                    video.src = `https://video.bdstw.org/${videoIndex}.mp4`;
+                    video.load();
+            
+                    // Add an event listener to manually loop the video
+                    video.addEventListener('ended', function() {
+                        this.play();
+                    }, false);
+                }
+                // --- END ---        
             $('#main').show()
         const isLoggedIn = Object.keys(ConfigManager.getAuthAccounts()).length > 0
 
