@@ -152,32 +152,60 @@ body {
     right: -1px;
 }
 
-/* Windows Frame Button Styles. */
+/* Windows Frame Button Styles */
 .frameButton {
-    background: none;
+    background: transparent;
     border: none;
     height: 22px;
-    width: 39px;
+    width: 45px; /* Slightly wider for a better click target */
     cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 }
+
+/* Style the SVG icons within the buttons */
+.frameButton svg,
+.frameButton svg * { /* Target svg and all its children */
+    fill: #E0E0E0 !important; /* Use !important to override inline styles */
+    stroke: #E0E0E0 !important;
+    transition: fill 0.2s ease-in-out, stroke 0.2s ease-in-out;
+}
+
+/* Hover effect for all buttons */
 .frameButton:hover,
 .frameButton:focus {
-    background: rgba(189, 189, 189, 0.43);
+    background-color: rgba(255, 255, 255, 0.1);
 }
+
+.frameButton:hover svg,
+.frameButton:hover svg *,
+.frameButton:focus svg,
+.frameButton:focus svg * {
+    fill: #FFFFFF !important;
+    stroke: #FFFFFF !important;
+}
+
+/* Active (click) effect for all buttons */
 .frameButton:active {
-    background: rgba(156, 156, 156, 0.43);
+    background-color: rgba(255, 255, 255, 0.2);
 }
+
 .frameButton:focus {
     outline: 0px;
 }
 
-/* Close button is red. */
+/* Close button specifics */
 #frameButton_close:hover,
 #frameButton_close:focus {
-    background: rgba(255, 53, 53, 0.61) !important;
+    background-color: #E81123; /* Standard Windows close red */
 }
+
 #frameButton_close:active {
-    background: rgba(235, 0, 0, 0.61) !important;
+    background-color: #F1707A; /* Lighter red for active state */
+}
+
+/* Hide the maximize button as requested by the user */
+#frameButton_restoredown {
+    display: none;
 }
 
 /* Darwin Frame Button Styles. */
