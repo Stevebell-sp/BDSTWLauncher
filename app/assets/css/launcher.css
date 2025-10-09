@@ -46,10 +46,28 @@ body, button {
     color: white;
 }
 
-/*body {
-    background: url('./../images/backgrounds/0.jpg') no-repeat center center fixed;
-    background-size: cover;
-}*/
+body {
+    background-color: #000; /* Fallback background */
+}
+
+#backgroundVideo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    object-fit: contain !important;
+}
+
+/* Set a consistent overlay for all views for readability over the video */
+#welcomeContainer,
+#loginContainer,
+#waitingContainer,
+#loginOptionsContainer,
+#settingsContainer {
+    background: rgba(0, 0, 0, 0.55);
+}
 
 /*******************************************************************************
  *                                                                             *

@@ -68,10 +68,19 @@ async function showMainUI(data){
     updateSelectedServer(data.getServerById(ConfigManager.getSelectedServer()))
     refreshServerStatus()
     setTimeout(() => {
-        document.getElementById('frameBar').style.backgroundColor = 'rgba(0, 0, 0, 0.5)'
-        document.body.style.backgroundImage = `url('assets/images/backgrounds/${document.body.getAttribute('bkid')}.jpg')`
-        $('#main').show()
-
+            document.getElementById('frameBar').style.backgroundColor = 'rgba(0, 0, 0, 0.5)'
+            // document.body.style.backgroundImage = `url('assets/images/backgrounds/${document.body.getAttribute('bkid')}.jpg')`
+        
+            // --- NEW VIDEO BACKGROUND LOGIC ---
+            const video = document.getElementById('backgroundVideo');
+            if (video) {
+                const videoIndex = Math.floor(Math.random() * 6) + 1;
+                video.src = `https://video.bdstw.org/${videoIndex}.mp4`;
+                video.load();
+            }
+            // --- END ---
+        
+            $('#main').show()
         const isLoggedIn = Object.keys(ConfigManager.getAuthAccounts()).length > 0
 
         // If this is enabled in a development environment we'll get ratelimited.
